@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "style": "استایل",
+    "font": "فونت",
+    "color": "رنگ",
+    "style_color": "رنگ استایل",
+    "select_color": "انتخاب رنگ",
+    "type_text": "اینجا بنویس...",
+    "line_height": "فاصله خطوط",
+    "letter_spacing": "فاصله حروف",
+    "word_spacing": "فاصله کلمات",
+    "reset_spacing": "بازنشانی فاصله‌ها",
+    "export": "خروجی",
+    "save_gallery": "ذخیره\nدر گالری",
+    "instagram_story": "استوری\nاینستاگرام",
+    "whatsapp_status": "استاتوس\nواتساپ",
+    "telegram_sticker": "استیکر\nتلگرام",
+    "copy": "کپی",
+    "cut": "برش",
+    "paste": "چسباندن",
+    "select_all": "انتخاب همه"
+  },
+  "messages": {
+    "went_wrong": "مشکلی پیش آمد",
+    "network_connection_error": "لطفا اتصال اینترنت خود را بررسی کنید",
+    "capture_error": "در ثبت تصویر خطایی رخ داد.",
+    "copy_success": "تصویر با موفقیت کپی شد",
+    "copy_error": "کپی کردن تصویر امکان‌پذیر نبود",
+    "save_success": "تصویر در گالری ذخیره شد",
+    "save_error": "ذخیره کردن تصویر امکان‌پذیر نبود"
+  },
+  "errors": {
+    "default": "خطایی رخ داده است.",
+    "network": "خطای شبکه رخ داد. (کد: {})",
+    "timeout": "درخواست منقضی شد.",
+    "server": "خطای سرور رخ داد. (کد: {})",
+    "unknown": "یک خطای ناشناخته رخ داد."
+  }
+}

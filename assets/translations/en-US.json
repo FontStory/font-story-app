@@ -1,0 +1,39 @@
+{
+  "ui": {
+    "style": "Style",
+    "font": "Font",
+    "color": "Color",
+    "style_color": "Style Color",
+    "select_color": "Select Color",
+    "type_text": "Type here...",
+    "line_height": "Line Height",
+    "letter_spacing": "Letter Spacing",
+    "word_spacing": "Word Spacing",
+    "reset_spacing": "Reset Spacing",
+    "export": "Export",
+    "save_gallery": "Save to\nGallery",
+    "instagram_story": "Instagram\nStory",
+    "whatsapp_status": "Whatsapp\nStatus",
+    "telegram_sticker": "Telegram\nSticker",
+    "copy": "Copy",
+    "cut": "Cut",
+    "paste": "Paste",
+    "select_all": "Select All"
+  },
+  "messages": {
+    "went_wrong": "Something went wrong",
+    "network_connection_error": "Please check your internet connection",
+    "capture_error": "Failed to capture image",
+    "copy_success": "Image copied successfully",
+    "copy_error": "Could not copy image",
+    "save_success": "Image saved to gallery",
+    "save_error": "Could not save image"
+  },
+  "errors": {
+    "default": "An error has occurred.",
+    "network": "A network error occurred. (Code: {})",
+    "timeout": "The request timed out.",
+    "server": "A server error occurred. (Code: {})",
+    "unknown": "An unknown error occurred."
+  }
+}
