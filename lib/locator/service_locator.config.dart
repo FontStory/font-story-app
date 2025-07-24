@@ -11,8 +11,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:font_story/core/services/api/dio.dart' as _i880;
 import 'package:font_story/core/services/font/font_loader.dart' as _i82;
-import 'package:font_story/core/services/font/font_picker.dart' as _i867;
 import 'package:font_story/core/services/hive_manager.dart' as _i1062;
+import 'package:font_story/core/services/network.dart' as _i864;
 import 'package:font_story/core/services/permission_handler.dart' as _i343;
 import 'package:font_story/features/font_story/data/data_sources/local/datasource.dart'
     as _i794;
@@ -28,8 +28,8 @@ import 'package:font_story/features/font_story/domain/usecases/get_styles.dart'
     as _i659;
 import 'package:font_story/features/font_story/domain/usecases/load_font.dart'
     as _i307;
-import 'package:font_story/features/font_story/domain/usecases/sync_initial_data_usecase.dart'
-    as _i21;
+import 'package:font_story/features/font_story/domain/usecases/sync_initial_data.dart'
+    as _i967;
 import 'package:get_it/get_it.dart' as _i174;
 import 'package:injectable/injectable.dart' as _i526;
 
@@ -42,13 +42,13 @@ extension GetItInjectableX on _i174.GetIt {
     final gh = _i526.GetItHelper(this, environment, environmentFilter);
     gh.lazySingleton<_i880.DioService>(() => _i880.DioService());
     gh.lazySingleton<_i1062.HiveManager>(() => _i1062.HiveManager());
-    gh.lazySingleton<_i867.FontPicker>(() => _i867.FilePickerAdapter());
     gh.lazySingleton<_i82.DynamicFontLoader>(
       () => _i82.DefaultDynamicFontLoader(),
     );
     gh.lazySingleton<_i343.PermissionHandler>(
       () => _i343.PermissionHandlerService(),
     );
+    gh.lazySingleton<_i864.NetworkManager>(() => _i864.NetworkManagerImpl());
     gh.factory<_i690.FontStoryRemoteDatasource>(
       () => _i690.FontStoryDatasourceImpl(gh<_i880.DioService>()),
     );
@@ -71,8 +71,8 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i307.LoadFont>(
       () => _i307.LoadFont(gh<_i764.FontStoryRepository>()),
     );
-    gh.factory<_i21.SyncInitialDataUseCase>(
-      () => _i21.SyncInitialDataUseCase(gh<_i764.FontStoryRepository>()),
+    gh.factory<_i967.SyncInitialData>(
+      () => _i967.SyncInitialData(gh<_i764.FontStoryRepository>()),
     );
     return this;
   }

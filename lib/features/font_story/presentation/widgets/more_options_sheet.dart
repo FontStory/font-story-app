@@ -28,6 +28,7 @@ class MoreOptionsSheet extends StatelessWidget {
                 label: 'ui.line_height'.tr(),
                 min: 0.8,
                 max: 3.0,
+                step: 0.2,
                 value: lineHeight,
                 onChanged: (value) =>
                     context.read<FontStoryCubit>().changeLineHeight(value),
@@ -81,10 +82,15 @@ class MoreOptionsSheet extends StatelessWidget {
     required double value,
     double min = -10.0,
     double max = 10.0,
+    double step = 0.5,
     required ValueChanged<double> onChanged,
   }) {
-    // Calculate the number of divisions to create steps of 0.5.
-    final int divisions = ((max - min) * 2).round();
+    // Ensure the step is not zero to avoid division by zero errors.
+    final double effectiveStep = (step <= 0) ? 0.1 : step;
+
+    // Calculate the number of divisions based on the range and the desired step.
+    final int divisions = ((max - min) / effectiveStep).round();
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart' show Color, Colors;
 class AppPalette {
   AppPalette._();
 
+  static Color splash = const Color(0xff007ECC);
+
   // Vibrant Colors
   static Color primaryPink = const Color.fromRGBO(255, 117, 140, 1);
   static const Color primaryBlaze = Color.fromRGBO(255, 95, 109, 1);

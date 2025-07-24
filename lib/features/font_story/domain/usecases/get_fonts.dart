@@ -9,12 +9,13 @@ import '../repositories/repository.dart';
 
 @injectable
 class GetFonts implements UseCase<List<FontEntity>, Language?> {
-  final FontStoryRepository repository;
+  final FontStoryRepository _repository;
 
-  GetFonts(this.repository);
+  GetFonts(this._repository);
 
   @override
   Future<Either<Failure, List<FontEntity>>> call(Language? language) async {
-    return await repository.getFonts(language);
+
+    return await _repository.getFonts(language);
   }
 }

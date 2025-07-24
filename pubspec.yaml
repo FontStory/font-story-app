@@ -63,6 +63,7 @@ dependencies:
       ref: knottx-latest
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  connectivity_plus: ^6.1.4
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

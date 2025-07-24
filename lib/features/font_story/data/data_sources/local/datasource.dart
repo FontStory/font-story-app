@@ -9,6 +9,4 @@ abstract interface class FontStoryLocalDatasource {
   Future<void> saveStylesJson(String json);
   Future<String?> getFontsJson();
   Future<void> saveFontsJson(String json);
-  Future<bool> isInitialSyncCompleted();
-  Future<void> setInitialSyncCompleted();
 }

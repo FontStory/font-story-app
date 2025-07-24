@@ -11,10 +11,10 @@ import 'package:url_launcher/url_launcher.dart';
 part 'export_state.dart';
 
 class ExportCubit extends Cubit<ExportState> {
-  final ClipboardService clipboard;
-  final ImageSaver imageSaver;
+  final ClipboardService _clipboard;
+  final ImageSaver _imageSaver;
 
-  ExportCubit(this.clipboard, this.imageSaver) : super(const ExportState());
+  ExportCubit(this._clipboard, this._imageSaver) : super(const ExportState());
 
   void launchAppUrl(String url) async {
     final uri = Uri.parse(url);
@@ -42,7 +42,7 @@ class ExportCubit extends Cubit<ExportState> {
     }
 
     try {
-      await clipboard.copyImage(imageBytes);
+      await _clipboard.copyImage(imageBytes);
       emit(
         state.copyWith(
           status: DataStatus.success,
@@ -75,7 +75,7 @@ class ExportCubit extends Cubit<ExportState> {
     }
 
     try {
-      await imageSaver.save(imageBytes);
+      await _imageSaver.save(imageBytes);
       emit(
         state.copyWith(
           status: DataStatus.success,

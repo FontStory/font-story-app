@@ -6,13 +6,13 @@ import 'package:injectable/injectable.dart';
 import '../repositories/repository.dart';
 
 @injectable
-class SyncInitialDataUseCase implements NoParamUseCase<void> {
-  final FontStoryRepository repository;
+class SyncInitialData implements NoParamUseCase<void> {
+  final FontStoryRepository _repository;
 
-  SyncInitialDataUseCase(this.repository);
+  SyncInitialData(this._repository);
 
   @override
   Future<Either<Failure, void>> call() async {
-    return await repository.syncInitialData();
+    return await _repository.syncInitialData();
   }
 }

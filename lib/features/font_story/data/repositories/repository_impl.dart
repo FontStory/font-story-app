@@ -29,10 +29,6 @@ class FontStoryRepositoryImpl implements FontStoryRepository {
   @override
   Future<Either<Failure, void>> syncInitialData() {
     return safeApiCall<void>(() async {
-      final bool alreadySynced = await _localDatasource
-          .isInitialSyncCompleted();
-      if (alreadySynced) return;
-
       final results = await Future.wait([
         _remoteDatasource.fetchStylesJson(),
         _remoteDatasource.fetchFontsJson(),
@@ -42,8 +38,6 @@ class FontStoryRepositoryImpl implements FontStoryRepository {
         _localDatasource.saveStylesJson(results[0]),
         _localDatasource.saveFontsJson(results[1]),
       ]);
-
-      await _localDatasource.setInitialSyncCompleted();
     });
   }
 

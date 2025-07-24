@@ -31,10 +31,7 @@ class _TextFieldStack extends StatelessWidget {
                   (layerStyle.position?.dy ?? 0) * scaleFactor,
                 ),
                 child: _StylingTextField(
-                  style: _EditorFieldStyles.buildLayerStyle(
-                    state,
-                    index,
-                  ),
+                  style: _EditorFieldStyles.buildLayerStyle(state, index),
                   state: state,
                   controller: controller,
                   decoration: commonDecoration,

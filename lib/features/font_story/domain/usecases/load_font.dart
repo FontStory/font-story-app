@@ -8,12 +8,12 @@ import '../repositories/repository.dart';
 
 @injectable
 class LoadFont implements UseCase<void, FontEntity> {
-  final FontStoryRepository repository;
+  final FontStoryRepository _repository;
 
-  LoadFont(this.repository);
+  LoadFont(this._repository);
 
   @override
   Future<Either<Failure, void>> call(FontEntity param) async {
-    return await repository.loadFontIntoApp(param);
+    return await _repository.loadFontIntoApp(param);
   }
 }

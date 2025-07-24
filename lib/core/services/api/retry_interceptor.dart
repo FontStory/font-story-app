@@ -2,15 +2,17 @@ import 'dart:io';
 import 'package:dio/dio.dart';
 
 class RetryInterceptor extends Interceptor {
-  final Dio dio;
-  final int maxRetries;
-  final Duration retryDelay;
+  final Dio _dio;
+  final int _maxRetries;
+  final Duration _retryDelay;
 
   RetryInterceptor({
-    required this.dio,
-    this.maxRetries = 3,
-    this.retryDelay = const Duration(seconds: 2),
-  });
+    required Dio dio,
+    int maxRetries = 1,
+    Duration retryDelay = const Duration(seconds: 2),
+  }) : _retryDelay = retryDelay,
+       _maxRetries = maxRetries,
+       _dio = dio;
 
   @override
   Future<void> onError(
@@ -22,15 +24,15 @@ class RetryInterceptor extends Interceptor {
       final options = err.requestOptions;
       int retryCount = options.extra["retryCount"] ?? 0;
 
-      if (retryCount < maxRetries) {
+      if (retryCount < _maxRetries) {
         retryCount++;
         options.extra["retryCount"] = retryCount;
 
         // Wait for a short delay before retrying.
-        await Future.delayed(retryDelay);
+        await Future.delayed(_retryDelay);
 
         try {
-          final response = await dio.fetch(options);
+          final response = await _dio.fetch(options);
           return handler.resolve(response);
         } catch (e) {
           return handler.next(e as DioException);

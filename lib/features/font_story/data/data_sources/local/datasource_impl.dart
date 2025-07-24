@@ -7,17 +7,6 @@ class FontStoryLocalDatasourceImpl implements FontStoryLocalDatasource {
   FontStoryLocalDatasourceImpl(this._hiveManager);
 
   @override
-  Future<bool> isInitialSyncCompleted() async {
-    return await _hiveManager.read<bool>(settingsBox, syncCompletedKey) ??
-        false;
-  }
-
-  @override
-  Future<void> setInitialSyncCompleted() async {
-    await _hiveManager.create<bool>(settingsBox, syncCompletedKey, true);
-  }
-
-  @override
   Future<String?> getStylesJson() async {
     return _hiveManager.read<String>(boxName, stylesKey);
   }

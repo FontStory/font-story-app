@@ -8,12 +8,12 @@ import '../repositories/repository.dart';
 
 @injectable
 class GetStyles implements NoParamUseCase<List<TextEffectStyle>> {
-  final FontStoryRepository repository;
+  final FontStoryRepository _repository;
 
-  GetStyles(this.repository);
+  GetStyles(this._repository);
 
   @override
   Future<Either<Failure, List<TextEffectStyle>>> call() async {
-    return await repository.getStyles();
+    return await _repository.getStyles();
   }
 }

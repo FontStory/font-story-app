@@ -14,7 +14,6 @@ import 'core/common/theme/theme_cubit.dart';
 import 'core/constants/local.dart';
 import 'core/helpers/log.dart';
 import 'core/services/hive_manager.dart';
-import 'features/font_story/domain/usecases/sync_initial_data_usecase.dart';
 import 'locator/service_locator.dart';
 
 part 'app.dart';
@@ -32,9 +31,6 @@ void main() async {
   await locator<HiveManager>().init();
   LogManager.instance.initialize();
 
-  final syncUseCase = locator<SyncInitialDataUseCase>();
-  await syncUseCase.call();
-
   final localization = LocalizationCubit();
   final theme = ThemeCubit();
 
@@ -47,8 +43,8 @@ void main() async {
       fallbackLocale: kFallbackLocale,
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => localization),
-          BlocProvider(create: (_) => theme),
+          BlocProvider.value(value: localization),
+          BlocProvider.value(value: theme),
         ],
         child: const FontStory(),
       ),

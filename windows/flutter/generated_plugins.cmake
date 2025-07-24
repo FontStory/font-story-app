@@ -3,6 +3,7 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
+  connectivity_plus
   irondash_engine_context
   pasteboard
   permission_handler_windows

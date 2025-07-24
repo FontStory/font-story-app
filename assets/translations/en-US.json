@@ -1,5 +1,7 @@
 {
   "ui": {
+    "syncing": "Syncing...",
+    "try_again": "Try Again",
     "style": "Style",
     "font": "Font",
     "color": "Color",
