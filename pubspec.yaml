@@ -38,7 +38,6 @@ dependencies:
   injectable: ^2.5.0
   logger: ^2.6.0
   dartz: ^0.10.1
-  file_picker: ^10.2.0
   isolate_manager: ^6.0.1
   equatable: ^2.0.7
   bloc: ^9.0.0

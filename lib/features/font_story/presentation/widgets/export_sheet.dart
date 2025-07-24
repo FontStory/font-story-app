@@ -38,9 +38,9 @@ class ExportSheet extends StatelessWidget {
 
   /// Captures the screenshot and executes the given action.
   Future<void> _captureAndAct(
-      BuildContext context,
-      Future<void> Function(Uint8List) onCaptured,
-      ) async {
+    BuildContext context,
+    Future<void> Function(Uint8List) onCaptured,
+  ) async {
     if (isTextFieldEmpty) return;
 
     focusNode.unfocus();
@@ -65,26 +65,55 @@ class ExportSheet extends StatelessWidget {
         labelKey: 'ui.save_gallery',
         onTap: () async => await _captureAndAct(
           context,
-              (bytes) async => await context.read<ExportCubit>().saveImage(imageBytes: bytes),
+          (bytes) async =>
+              await context.read<ExportCubit>().saveImage(imageBytes: bytes),
         ),
       ),
       _ExportOption(
-        icon: SvgPicture.asset('assets/icons/instagram.svg', height: 32,
-            colorFilter: ColorFilter.mode(context.palette.onSurface, BlendMode.srcIn)),
+        icon: Icon(Iconsax.copy_copy, color: context.palette.onSurface),
+        backgroundColor: context.palette.surface,
+        labelKey: 'ui.copy_clipboard',
+        onTap: () async => await _captureAndAct(
+          context,
+          (bytes) async =>
+              await context.read<ExportCubit>().copyImage(imageBytes: bytes),
+        ),
+      ),
+      _ExportOption(
+        icon: SvgPicture.asset(
+          'assets/icons/instagram.svg',
+          height: 32,
+          colorFilter: ColorFilter.mode(
+            context.palette.onSurface,
+            BlendMode.srcIn,
+          ),
+        ),
         backgroundColor: AppPalette.instagram,
         labelKey: 'ui.instagram_story',
         onTap: () async => await _shareAndLaunch(context, instagramUrl),
       ),
       _ExportOption(
-        icon: SvgPicture.asset('assets/icons/whatsapp.svg', height: 32,
-            colorFilter: ColorFilter.mode(context.palette.onSurface, BlendMode.srcIn)),
+        icon: SvgPicture.asset(
+          'assets/icons/whatsapp.svg',
+          height: 32,
+          colorFilter: ColorFilter.mode(
+            context.palette.onSurface,
+            BlendMode.srcIn,
+          ),
+        ),
         backgroundColor: AppPalette.whatsapp,
         labelKey: 'ui.whatsapp_status',
         onTap: () async => await _shareAndLaunch(context, whatsappUrl),
       ),
       _ExportOption(
-        icon: SvgPicture.asset('assets/icons/telegram.svg', height: 28,
-            colorFilter: ColorFilter.mode(context.palette.onSurface, BlendMode.srcIn)),
+        icon: SvgPicture.asset(
+          'assets/icons/telegram.svg',
+          height: 28,
+          colorFilter: ColorFilter.mode(
+            context.palette.onSurface,
+            BlendMode.srcIn,
+          ),
+        ),
         backgroundColor: AppPalette.telegram,
         labelKey: 'ui.telegram_sticker',
         onTap: () async => await _shareAndLaunch(context, telegramUrl),
