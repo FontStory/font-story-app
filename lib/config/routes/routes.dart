@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' show BuildContext, Widget;
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:font_story/core/common/localization/cubit/localization_cubit.dart';
 import 'package:font_story/core/common/sync/sync_cubit.dart';
 import 'package:font_story/core/services/clipboard/clipboard_loader.dart';
@@ -34,8 +35,12 @@ class AppRoutes {
           },
         ),
         BlocProvider(
-          create: (context) =>
-              ExportCubit(clipboard, imageSaver, locator.get()),
+          create: (context) => ExportCubit(
+            clipboard,
+            imageSaver,
+            locator.get(),
+            noAds: dotenv.env['NO_ADS'] == 'true',
+          ),
         ),
       ],
       child: TextEditorScreen(),

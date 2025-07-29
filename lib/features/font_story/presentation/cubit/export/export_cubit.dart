@@ -9,14 +9,22 @@ import 'package:font_story/core/services/image_saver/image_saver.dart';
 part 'export_state.dart';
 
 class ExportCubit extends Cubit<ExportState> {
-  ExportCubit(this._clipboard, this._imageSaver, this._adManager)
-    : super(const ExportState()) {
-    _adManager.loadRewardedAd();
-  }
-
   final ClipboardService _clipboard;
   final ImageSaver _imageSaver;
   final AdManager _adManager;
+  final bool noAds;
+
+  ExportCubit(
+    this._clipboard,
+    this._imageSaver,
+    this._adManager, {
+    required this.noAds,
+  }) : super(const ExportState()) {
+    // Only load an ad if ads are enabled for the user.
+    if (!noAds) {
+      _adManager.loadRewardedAd();
+    }
+  }
 
   void messageHandled() {
     emit(state.copyWith(clearMessage: true));
@@ -42,14 +50,21 @@ class ExportCubit extends Cubit<ExportState> {
     );
   }
 
-  Future<bool> _executeExportAction({
-    required Uint8List? imageBytes,
-    required Future<void> Function() action,
-    required String loadingMessageKey,
-    required String successMessageKey,
-    required String errorMessageKey,
-  }) async {
+  Future<bool> _showAdIfNeeded() async {
+    // If the user has the NoAds flag, we can proceed without an ad.
+    if (noAds) {
+      return true;
+    }
+
+    // Otherwise, show the ad and check if the user earned the reward.
+    emit(
+      state.copyWith(
+        status: DataStatus.loading,
+        message: 'messages.loading_ad'.tr(),
+      ),
+    );
     final bool rewardEarned = await _adManager.showRewardedAd();
+
     if (!rewardEarned) {
       emit(
         state.copyWith(
@@ -57,6 +72,22 @@ class ExportCubit extends Cubit<ExportState> {
           message: 'messages.ad_reward_required'.tr(),
         ),
       );
+      return false;
+    }
+
+    return true;
+  }
+
+  Future<bool> _executeExportAction({
+    required Uint8List? imageBytes,
+    required Future<void> Function() action,
+    required String loadingMessageKey,
+    required String successMessageKey,
+    required String errorMessageKey,
+  }) async {
+    // Conditionally show an ad and check if we can proceed.
+    final bool canProceed = await _showAdIfNeeded();
+    if (!canProceed) {
       return false;
     }
 
