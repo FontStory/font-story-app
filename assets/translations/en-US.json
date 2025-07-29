@@ -1,0 +1,44 @@
+{
+  "ui": {
+    "syncing": "Syncing...",
+    "try_again": "Try Again",
+    "style": "Style",
+    "font": "Font",
+    "color": "Color",
+    "style_color": "Style Color",
+    "select_color": "Select Color",
+    "type_text": "Type here...",
+    "line_height": "Line Height",
+    "letter_spacing": "Letter Spacing",
+    "word_spacing": "Word Spacing",
+    "reset_spacing": "Reset Spacing",
+    "export": "Export",
+    "copy_clipboard": "Copy to\nClipboard",
+    "save_gallery": "Save to\nGallery",
+    "instagram_story": "Instagram\nStory",
+    "whatsapp_status": "Whatsapp\nStatus",
+    "telegram_sticker": "Telegram\nSticker",
+    "copy": "Copy",
+    "cut": "Cut",
+    "paste": "Paste",
+    "select_all": "Select All"
+  },
+  "messages": {
+    "loading_ad": "Loading ad...",
+    "ad_reward_required": "Please watch the ad to complete the action",
+    "saving_image": "Saving image...",
+    "copying_image": "Copying image...",
+    "capture_error": "Could not capture image. Please try again",
+    "save_success": "Image saved to gallery",
+    "save_error": "Failed to save image",
+    "copy_success": "Image copied to clipboard",
+    "copy_error": "Failed to copy image"
+  },
+  "errors": {
+    "default": "An error has occurred.",
+    "network": "A network error occurred. (Code: {})",
+    "timeout": "The request timed out.",
+    "server": "A server error occurred. (Code: {})",
+    "unknown": "An unknown error occurred."
+  }
+}
