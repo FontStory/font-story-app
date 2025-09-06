@@ -4,12 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_story/config/routes/routes.dart';
 import 'package:font_story/config/values/index.dart';
+import 'package:font_story/core/common/internet/internet_connectivity_cubit.dart';
 import 'package:font_story/core/components/buttons/button.dart';
-import 'package:font_story/core/constants/enums/status.dart';
 import 'package:font_story/core/extensions/index.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
-
-import 'core/common/sync/sync_cubit.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -37,9 +35,7 @@ class _SplashScreenState extends State<SplashScreen>
 
     _animationController.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
-        if (context.read<SyncCubit>().state == DataStatus.success) {
-          context.pushAndRemoveAll(AppRoutePaths.main);
-        }
+        context.pushAndRemoveAll(AppRoutePaths.main);
       }
     });
 
@@ -70,16 +66,16 @@ class _SplashScreenState extends State<SplashScreen>
                 child: Image.asset('assets/images/splash.png'),
               ),
               const Spacer(),
-              BlocConsumer<SyncCubit, DataStatus>(
+              BlocConsumer<InternetConnectivityCubit, bool>(
                 listener: (context, state) {
-                  if (state == DataStatus.success) {
+                  if (state) {
                     if (_animationController.isCompleted) {
                       context.pushAndRemoveAll(AppRoutePaths.main);
                     }
                   }
                 },
                 builder: (context, state) {
-                  if (state == DataStatus.error) {
+                  if (!state) {
                     return Padding(
                       padding: AppSpacing.xl.horizontal,
                       child: AppButton.secondary(
@@ -87,7 +83,9 @@ class _SplashScreenState extends State<SplashScreen>
                         label: 'ui.try_again'.tr(),
                         isExpanded: true,
                         appButtonSize: AppButtonSize.large,
-                        onTap: () => context.read<SyncCubit>().syncData(),
+                        onTap: () => context
+                            .read<InternetConnectivityCubit>()
+                            .checkInternetConnection(),
                       ),
                     );
                   }

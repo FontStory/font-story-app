@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart' show BuildContext, Widget;
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:font_story/core/common/internet/internet_connectivity_cubit.dart';
 import 'package:font_story/core/common/localization/cubit/localization_cubit.dart';
-import 'package:font_story/core/common/sync/sync_cubit.dart';
 import 'package:font_story/core/services/clipboard/clipboard_loader.dart';
 import 'package:font_story/core/services/image_saver/image_saver_loader.dart';
 import 'package:font_story/features/font_story/presentation/cubit/export/export_cubit.dart';
@@ -19,8 +19,8 @@ class AppRoutes {
   static const String initialRoute = AppRoutePaths.splash;
 
   static Map<String, Widget Function(BuildContext)> routes = {
-    AppRoutePaths.splash: (context) => BlocProvider(
-      create: (context) => SyncCubit(locator.get(), locator.get())..syncData(),
+    AppRoutePaths.splash: (context) => BlocProvider.value(
+      value: locator.get<InternetConnectivityCubit>()..checkInternetConnection(),
       child: SplashScreen(),
     ),
     AppRoutePaths.main: (context) => MultiBlocProvider(
