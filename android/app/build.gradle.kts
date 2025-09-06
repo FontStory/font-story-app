@@ -8,7 +8,8 @@ plugins {
 android {
     namespace = "com.studio.moon.font_story"
     compileSdk = flutter.compileSdkVersion
-    ndkVersion = "27.2.12479018"
+    ndkVersion = "29.0.14033849"
+
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11

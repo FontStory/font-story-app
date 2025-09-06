@@ -9,6 +9,8 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:font_story/core/common/internet/internet_connectivity_cubit.dart'
+    as _i508;
 import 'package:font_story/core/common/localization/cubit/localization_cubit.dart'
     as _i1042;
 import 'package:font_story/core/common/theme/theme_cubit.dart' as _i426;
@@ -58,6 +60,9 @@ extension GetItInjectableX on _i174.GetIt {
       () => _i343.PermissionHandlerService(),
     );
     gh.lazySingleton<_i864.NetworkManager>(() => _i864.NetworkManagerImpl());
+    gh.lazySingleton<_i508.InternetConnectivityCubit>(
+      () => _i508.InternetConnectivityCubit(gh<_i864.NetworkManager>()),
+    );
     gh.factory<_i690.FontStoryRemoteDatasource>(
       () => _i690.FontStoryDatasourceImpl(gh<_i880.DioService>()),
     );

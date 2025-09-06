@@ -21,6 +21,19 @@ part 'app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // LogManager.instance.initialize();
+  //
+  // await Future.wait([
+  //   dotenv.load(fileName: '.env'),
+  //   EasyLocalization.ensureInitialized(),
+  //   _initializeHydratedBloc(),
+  // ]);
+  //
+  // configureDependencies();
+  // await locator<HiveManager>().init();
+  //
+  // MobileAds.instance.initialize();
+
   LogManager.instance.initialize();
 
   await Future.wait([
@@ -29,10 +42,12 @@ void main() async {
     _initializeHydratedBloc(),
   ]);
 
+  if (!kIsWeb) {
+    await MobileAds.instance.initialize();
+  }
+
   configureDependencies();
   await locator<HiveManager>().init();
-
-  MobileAds.instance.initialize();
 
   final localization = locator<LocalizationCubit>();
   final theme = locator<ThemeCubit>();
