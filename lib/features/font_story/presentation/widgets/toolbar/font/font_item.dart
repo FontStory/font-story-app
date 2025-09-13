@@ -94,7 +94,7 @@ class _FontItemState extends State<FontItem>
   Widget _buildBadge(BuildContext context) {
     String? badgeText;
     if (widget.font.language != null) {
-      badgeText = widget.font.language!.capitalize();
+      badgeText = widget.font.language!;
     }
 
     if (badgeText == null) {

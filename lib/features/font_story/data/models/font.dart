@@ -1,16 +1,19 @@
 import 'dart:convert';
-
 import 'package:isolate_manager/isolate_manager.dart' show isolateManagerWorker;
 
-import '../../domain/entities/font.dart';
+class FontModel {
+  final int id;
+  final String title;
+  final String fontFamily;
+  final String path;
+  final String? language;
 
-class FontModel extends FontEntity {
   const FontModel({
-    required super.id,
-    required super.title,
-    required super.fontFamily,
-    required super.path,
-    super.language,
+    required this.id,
+    required this.title,
+    required this.fontFamily,
+    required this.path,
+    this.language,
   });
 
   factory FontModel.fromJson(
@@ -32,18 +35,19 @@ class FontModel extends FontEntity {
   @isolateManagerWorker
   static List<FontModel> fromNestedJson(Map<String, String> payload) {
     final List<FontModel> fonts = [];
-    try {
-      final jsonString = payload['jsonString']!;
-      final baseUrl = payload['baseUrl']!;
-      final languageKey = payload['language']!.toLowerCase();
 
+    final jsonString = payload['jsonString'];
+    final baseUrl = payload['baseUrl'];
+    final languageKey = payload['language']?.toLowerCase() ?? '';
+
+    if (jsonString == null || baseUrl == null) return [];
+
+    try {
       final decodedJson = jsonDecode(jsonString);
       final fontsByLanguage = decodedJson['fonts'] as Map<String, dynamic>;
 
       final fontList = fontsByLanguage[languageKey] as List?;
-      if (fontList == null) {
-        return [];
-      }
+      if (fontList == null) return [];
 
       for (final fontData in fontList) {
         if (fontData is Map<String, dynamic>) {

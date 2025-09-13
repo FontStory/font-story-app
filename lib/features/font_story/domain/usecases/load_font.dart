@@ -4,11 +4,11 @@ import 'package:font_story/core/usecase/usecase.dart';
 import 'package:injectable/injectable.dart';
 
 import '../entities/font.dart';
-import '../repositories/repository.dart';
+import '../repositories/font_repository.dart';
 
 @injectable
 class LoadFont implements UseCase<void, FontEntity> {
-  final FontStoryRepository _repository;
+  final FontRepository _repository;
 
   LoadFont(this._repository);
 

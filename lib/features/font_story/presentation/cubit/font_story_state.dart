@@ -1,5 +1,7 @@
 part of 'font_story_cubit.dart';
 
+enum ColorSelectionType { color, gradient }
+
 class FontStoryState extends Equatable {
   final PaginatedListState<FontEntity> fonts;
   final PaginatedListState<TextEffectStyle> styles;
@@ -14,8 +16,13 @@ class FontStoryState extends Equatable {
   final FontEntity? selectedFont;
   final TextEffectStyle? selectedStyle;
   final Color selectedColor;
+  final Gradient selectedGradient;
   final double selectedFontSize;
   final Color selectedStyleColor;
+  final Gradient selectedStyleGradient;
+
+  final ColorSelectionType colorSelectionType;
+  final ColorSelectionType styleColorSelectionType;
 
   const FontStoryState({
     this.fonts = const PaginatedListState(),
@@ -28,8 +35,12 @@ class FontStoryState extends Equatable {
     this.selectedFont,
     this.selectedStyle,
     this.selectedColor = AppPalette.white,
+    this.selectedGradient = const LinearGradient(colors: []),
     this.selectedFontSize = kBaseFontSize,
     this.selectedStyleColor = AppPalette.white,
+    this.selectedStyleGradient = const LinearGradient(colors: []),
+    this.colorSelectionType = ColorSelectionType.color,
+    this.styleColorSelectionType = ColorSelectionType.color,
   });
 
   FontStoryState copyWith({
@@ -43,8 +54,12 @@ class FontStoryState extends Equatable {
     FontEntity? selectedFont,
     TextEffectStyle? selectedStyle,
     Color? selectedColor,
+    Gradient? selectedGradient,
     double? selectedFontSize,
     Color? selectedStyleColor,
+    Gradient? selectedStyleGradient,
+    ColorSelectionType? colorSelectionType,
+    ColorSelectionType? styleColorSelectionType,
   }) {
     return FontStoryState(
       fonts: fonts ?? this.fonts,
@@ -57,8 +72,14 @@ class FontStoryState extends Equatable {
       selectedFont: selectedFont ?? this.selectedFont,
       selectedStyle: selectedStyle ?? this.selectedStyle,
       selectedColor: selectedColor ?? this.selectedColor,
+      selectedGradient: selectedGradient ?? this.selectedGradient,
       selectedFontSize: selectedFontSize ?? this.selectedFontSize,
       selectedStyleColor: selectedStyleColor ?? this.selectedStyleColor,
+      selectedStyleGradient:
+          selectedStyleGradient ?? this.selectedStyleGradient,
+      colorSelectionType: colorSelectionType ?? this.colorSelectionType,
+      styleColorSelectionType:
+          styleColorSelectionType ?? this.styleColorSelectionType,
     );
   }
 
@@ -74,7 +95,11 @@ class FontStoryState extends Equatable {
     selectedFont,
     selectedStyle,
     selectedColor,
+    selectedGradient,
     selectedFontSize,
     selectedStyleColor,
+    selectedStyleGradient,
+    colorSelectionType,
+    styleColorSelectionType,
   ];
 }

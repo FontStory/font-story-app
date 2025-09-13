@@ -3,8 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_story/config/values/index.dart';
 import 'package:font_story/core/constants/enums/status.dart';
 import 'package:font_story/core/extensions/index.dart';
-import 'package:font_story/features/font_story/domain/entities/index.dart';
 
+import '../../../../domain/entities/style.dart';
 import '../../../cubit/font_story_cubit.dart';
 import 'style_item.dart';
 

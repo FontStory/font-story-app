@@ -48,14 +48,18 @@ class EditorField extends StatelessWidget {
         selector: (state) => (
           state.selectedFont,
           state.selectedColor,
+          state.selectedGradient,
           state.selectedStyle,
           state.selectedStyleColor,
+          state.selectedStyleGradient,
           state.selectedFontSize,
           state.isRTLDirection,
           state.textAlign,
           state.lineHeight,
           state.letterSpacing,
           state.wordSpacing,
+          state.colorSelectionType,
+          state.styleColorSelectionType,
         ),
         builder: (context, _) {
           final state = context.read<FontStoryCubit>().state;
@@ -67,16 +71,20 @@ class EditorField extends StatelessWidget {
               child: Padding(
                 padding: dynamicPadding.vertical + 52.horizontal,
                 child: RepaintBoundary(
-                  child: _TextFieldStack(
-                    state: state,
-                    controller: controller,
-                    focusNode: focusNode,
-                    commonDecoration: InputDecoration.collapsed(
-                      hintText: 'ui.type_text'.tr(),
-                      hintStyle: TextStyle(color: context.palette.surface),
-                      hintTextDirection: context.locale.languageCode == 'fa'
-                          ? TextDirection.rtl
-                          : TextDirection.ltr,
+                  child: AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 250),
+                    child: TextFieldStack(
+                      key: ValueKey(state.selectedStyle?.id ?? 'default'),
+                      state: state,
+                      controller: controller,
+                      focusNode: focusNode,
+                      commonDecoration: InputDecoration.collapsed(
+                        hintText: 'ui.type_text'.tr(),
+                        hintStyle: TextStyle(color: context.palette.surface),
+                        hintTextDirection: context.locale.languageCode == 'fa'
+                            ? TextDirection.rtl
+                            : TextDirection.ltr,
+                      ),
                     ),
                   ),
                 ),

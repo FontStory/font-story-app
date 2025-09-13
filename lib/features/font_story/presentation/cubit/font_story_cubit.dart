@@ -2,13 +2,15 @@ import 'dart:ui' show Color, TextAlign;
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/material.dart' show Gradient, LinearGradient;
 import 'package:font_story/config/values/palette.dart';
 import 'package:font_story/core/common/localization/language.dart';
 import 'package:font_story/core/common/states/paginated_list.dart';
 import 'package:font_story/core/constants/enums/status.dart';
 import 'package:font_story/core/constants/ui.dart';
-import 'package:font_story/features/font_story/domain/entities/index.dart';
 
+import '../../domain/entities/font.dart';
+import '../../domain/entities/style.dart';
 import '../../domain/usecases/get_fonts.dart';
 import '../../domain/usecases/get_styles.dart';
 
@@ -23,8 +25,23 @@ class FontStoryCubit extends Cubit<FontStoryState> {
   void selectFont(FontEntity newFont) =>
       emit(state.copyWith(selectedFont: newFont));
 
-  void selectColor(Color newColor) =>
-      emit(state.copyWith(selectedColor: newColor));
+  void selectColor(Color newColor) {
+    emit(
+      state.copyWith(
+        selectedColor: newColor,
+        colorSelectionType: ColorSelectionType.color,
+      ),
+    );
+  }
+
+  void selectGradient(Gradient newGradient) {
+    emit(
+      state.copyWith(
+        selectedGradient: newGradient,
+        colorSelectionType: ColorSelectionType.gradient,
+      ),
+    );
+  }
 
   void changeFontSize(double newFontSize) =>
       emit(state.copyWith(selectedFontSize: newFontSize));
@@ -48,8 +65,23 @@ class FontStoryCubit extends Cubit<FontStoryState> {
   void toggleTextDirection() =>
       emit(state.copyWith(isRTLDirection: !state.isRTLDirection));
 
-  void selectStyleColor(Color newColor) =>
-      emit(state.copyWith(selectedStyleColor: newColor));
+  void selectStyleColor(Color newColor) {
+    emit(
+      state.copyWith(
+        selectedStyleColor: newColor,
+        styleColorSelectionType: ColorSelectionType.color,
+      ),
+    );
+  }
+
+  void selectStyleGradient(Gradient newGradient) {
+    emit(
+      state.copyWith(
+        selectedStyleGradient: newGradient,
+        styleColorSelectionType: ColorSelectionType.gradient,
+      ),
+    );
+  }
 
   void selectStyle(TextEffectStyle newStyle) {
     if (state.selectedFont == null) return;

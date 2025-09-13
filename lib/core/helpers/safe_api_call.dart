@@ -3,7 +3,8 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart' show Either, Left, Right;
 import 'package:dio/dio.dart' show DioException, DioExceptionType;
-import 'package:easy_localization/easy_localization.dart' show StringTranslateExtension;
+import 'package:easy_localization/easy_localization.dart'
+    show StringTranslateExtension;
 
 import '../error/api_exception.dart';
 import '../error/failure.dart';
@@ -41,6 +42,6 @@ Future<Either<Failure, T>> safeApiCall<T>(Future<T> Function() apiCall) async {
   } on ApiException catch (e) {
     return Left(ServerFailure(message: e.message));
   } catch (e) {
-    return Left(ServerFailure(message: 'errors.unknown'.tr()));
+    return Left(UnknownFailure(message: 'errors.unknown'.tr()));
   }
 }

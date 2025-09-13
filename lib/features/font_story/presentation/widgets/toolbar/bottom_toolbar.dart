@@ -34,16 +34,28 @@ class BottomToolbar extends StatelessWidget {
                       FontList(),
                       ColorList(
                         pageStorageKey: 'color',
-                        getSelectedColor: (state) => state.selectedColor,
+                        getSelectedValue: (state) => (
+                          state.colorSelectionType,
+                          state.selectedColor,
+                          state.selectedGradient,
+                        ),
                         onColorChanged: (cubit, color) =>
                             cubit.selectColor(color),
+                        onGradientChanged: (cubit, gradient) =>
+                            cubit.selectGradient(gradient),
                       ),
                       if (isColorMutable)
                         ColorList(
                           pageStorageKey: 'style-color',
-                          getSelectedColor: (state) => state.selectedStyleColor,
+                          getSelectedValue: (state) => (
+                            state.styleColorSelectionType,
+                            state.selectedStyleColor,
+                            state.selectedStyleGradient,
+                          ),
                           onColorChanged: (cubit, color) =>
                               cubit.selectStyleColor(color),
+                          onGradientChanged: (cubit, gradient) =>
+                              cubit.selectStyleGradient(gradient),
                         ),
                     ],
                   ),

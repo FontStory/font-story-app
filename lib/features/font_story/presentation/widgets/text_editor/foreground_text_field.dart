@@ -27,7 +27,7 @@ class _ForegroundTextField extends StatelessWidget {
         autocorrect: true,
         textAlignVertical: TextAlignVertical.center,
         cursorColor: context.palette.onSurface,
-        style: _EditorFieldStyles.buildInputTextStyle(state),
+        style: _EditorFieldStyles.buildInputTextStyle(state, controller.text),
         textAlign: state.textAlign,
         textDirection: state.isRTLDirection
             ? TextDirection.rtl
@@ -42,8 +42,7 @@ class _ForegroundTextField extends StatelessWidget {
     BuildContext context,
     EditableTextState editableTextState,
   ) {
-    // This is a specific workaround to hide the default context menu on iOS for web,
-    // which can have rendering issues or undesirable behavior.
+    // Workaround for iOS Web default context menu issues.
     if (kIsWeb && defaultTargetPlatform == TargetPlatform.iOS) {
       return const SizedBox.shrink();
     }

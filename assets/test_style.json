@@ -1,0 +1,460 @@
+[
+  {
+    "name": "plain",
+    "thumbnail": "/styles/plain.png"
+  },
+  {
+    "name": "kouman",
+    "thumbnail": "/styles/kouman.png",
+    "defaultTextColor": "#3E2C22",
+    "layeredTextStyles": [
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 2, "strokeJoin": "round", "color": "#07B6C7" }
+        },
+        "position": { "y": 5, "x": -5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 2, "strokeJoin": "round", "color": "#038FA1" }
+        },
+        "position": { "y": 4.5, "x": -4.5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 2, "strokeJoin": "round", "color": "#1179AE" }
+        },
+        "position": { "y": 4, "x": -4 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 2, "strokeJoin": "round", "color": "#3669A2" }
+        },
+        "position": { "y": 3.5, "x": -3.5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 2, "strokeJoin": "round", "color": "#A2459E" }
+        },
+        "position": { "y": 3, "x": -3 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 2, "strokeJoin": "round", "color": "#CC196B" }
+        },
+        "position": { "y": 2.5, "x": -2.5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 2, "strokeJoin": "round", "color": "#FF0503" }
+        },
+        "position": { "y": 2, "x": -2 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 2, "strokeJoin": "round", "color": "#F57400" }
+        },
+        "position": { "y": 1.5, "x": -1.5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 2, "strokeJoin": "round", "color": "#FE9909" }
+        },
+        "position": { "y": 1, "x": -1 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 2, "strokeJoin": "round", "color": "#F2CC87" }
+        },
+        "position": { "y": 0.5, "x": -0.5 }
+      }
+    ]
+  },
+  {
+    "name": "believe",
+    "thumbnail": "/styles/believe.png",
+    "defaultTextColor": "#FFFFFF",
+    "layeredTextStyles": [
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 8, "strokeJoin": "round", "color": "#323335" }
+        },
+        "position": { "y": 4, "x": -4 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 8, "strokeJoin": "round", "color": "#bf2b15" }
+        },
+        "position": { "y": 2.5, "x": -2.5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 7, "strokeJoin": "round", "color": "#f22709" }
+        },
+        "position": { "y": 1.5, "x": -1.5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 6, "color": "#f6713c" }
+        },
+        "position": { "y": 0, "x": 0 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 1, "color": "#9d020a" }
+        },
+        "position": { "y": 0.5, "x": 0.5 }
+      }
+    ]
+  },
+  {
+    "name": "comic",
+    "thumbnail": "/styles/comic.png",
+    "defaultTextColor": "#faa01c",
+    "layeredTextStyles": [
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 6, "strokeJoin": "round", "color": "#cb4f29" }
+        },
+        "position": { "y": 2.5, "x": 2.5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 5, "strokeJoin": "round", "color": "#353422" }
+        },
+        "position": { "y": 1.5, "x": 1.5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 4, "color": "#353422" }
+        },
+        "position": { "y": 0, "x": 0 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 1.5, "color": "#ffffff" }
+        },
+        "position": { "y": -0.3, "x": -0.3 }
+      }
+    ]
+  },
+  {
+    "name": "oreo",
+    "thumbnail": "/styles/oreo.png",
+    "defaultTextColor": "#FFFFFF",
+    "effectStyle": {
+      "paint": { "paintStyle": "stroke", "strokeWidth": 5, "strokeJoin": "round", "color": "#1B4EA8" }
+    },
+    "layeredTextStyles": [
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 8, "strokeJoin": "round", "color": "#0AAFE5" }
+        },
+        "position": { "y": 0, "x": 0 }
+      }
+    ]
+  },
+  {
+    "name": "arka",
+    "thumbnail": "/styles/arka.png",
+    "defaultTextColor": "#FDC947",
+    "effectStyle": {
+      "paint": { "paintStyle": "stroke", "strokeWidth": 5, "strokeJoin": "round", "color": "#CE260C" }
+    },
+    "layeredTextStyles": [
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 14, "strokeJoin": "round", "color": "#FFFFFF" }
+        },
+        "position": { "y": 2, "x": -2 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 10, "strokeJoin": "round", "color": "#731205" }
+        },
+        "position": { "y": 2, "x": -1 }
+      }
+    ]
+  },
+  {
+    "name": "arka 2",
+    "thumbnail": "/styles/arka2.png",
+    "defaultTextColor": "#FF2F6C",
+    "effectStyle": {
+      "paint": { "paintStyle": "stroke", "strokeWidth": 5, "strokeJoin": "round", "color": "#522196" }
+    },
+    "layeredTextStyles": [
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 14, "strokeJoin": "round", "color": "#FFFFFF" }
+        },
+        "position": { "y": 2, "x": -2 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 10, "strokeJoin": "round", "color": "#24064D" }
+        },
+        "position": { "y": 2, "x": -1 }
+      }
+    ]
+  },
+  {
+    "name": "barbie",
+    "thumbnail": "/styles/barbie.png",
+    "defaultTextColor": "#EA388B",
+    "layeredTextStyles": [
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 8, "strokeJoin": "round", "color": "#5D2A66" }
+        },
+        "position": { "y": 4, "x": -4 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 8, "strokeJoin": "round", "color": "#E93C72" }
+        },
+        "position": { "y": 2.5, "x": -2.5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 8, "strokeJoin": "round", "color": "#0E6389" }
+        },
+        "position": { "y": 1.5, "x": -1.5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 8, "strokeJoin": "round", "color": "#31B5C4" }
+        },
+        "position": { "y": 0, "x": 0 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 4, "color": "#F4DF82" }
+        },
+        "position": { "y": 0, "x": 0 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 1, "color": "#701D3B" }
+        },
+        "position": { "y": 0.5, "x": -0.5 }
+      }
+    ]
+  },
+  {
+    "name": "honey",
+    "thumbnail": "/styles/honey.png",
+    "defaultTextColor": "#F6AA31",
+    "effectStyle": {
+      "paint": { "paintStyle": "stroke", "strokeWidth": 3, "color": "#000000" }
+    },
+    "layeredTextStyles": [
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 9.5, "strokeJoin": "round", "color": "#FFFFFF" }
+        },
+        "position": { "y": 0, "x": -2 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 6, "strokeJoin": "round", "color": "#000000" }
+        },
+        "position": { "y": 2.5, "x": -4 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 6, "strokeJoin": "round", "color": "#000000" }
+        },
+        "position": { "y": 2, "x": -3.5 }
+      }
+    ]
+  },
+  {
+    "name": "nostalgia",
+    "thumbnail": "/styles/nostalgia.png",
+    "defaultTextColor": "#F8E5C4",
+    "effectStyle": {
+      "paint": { "paintStyle": "stroke", "strokeWidth": 3, "color": "#102D49" }
+    },
+    "layeredTextStyles": [
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 4, "color": "#318AA4" }
+        },
+        "position": { "y": 6.5, "x": -8.5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 4, "color": "#318AA4" }
+        },
+        "position": { "y": 6, "x": -8 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 4, "color": "#FDD5AD" }
+        },
+        "position": { "y": 5.5, "x": -7.5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 4, "color": "#FDD5AD" }
+        },
+        "position": { "y": 5, "x": -7 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 4, "color": "#DD3C23" }
+        },
+        "position": { "y": 4.5, "x": -6.5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 4, "color": "#DD3C23" }
+        },
+        "position": { "y": 4, "x": -6 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 15, "color": "#F0A773" }
+        },
+        "position": { "y": 3.5, "x": -5.5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 15, "color": "#F0A773" }
+        },
+        "position": { "y": 3, "x": -5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 6, "color": "#102D49" }
+        },
+        "position": { "y": 2.5, "x": -4.5 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 6, "color": "#102D49" }
+        },
+        "position": { "y": 2, "x": -4 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 6, "color": "#102D49" }
+        },
+        "position": { "y": 1.5, "x": -3.5 }
+      }
+    ]
+  },
+  {
+    "name": "sherry",
+    "thumbnail": "/styles/sherry.png",
+    "defaultTextColor": "#FFFFFF",
+    "layeredTextStyles": [
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 8, "strokeJoin": "round", "color": "#FC5FB6" }
+        },
+        "position": { "y": 1, "x": -1 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 3, "strokeJoin": "round", "color": "#D6137B" }
+        },
+        "position": { "y": 1, "x": -1 }
+      }
+    ]
+  },
+  {
+    "name": "leopard",
+    "thumbnail": "/styles/leopard.png",
+    "defaultTextColor": "#000000",
+    "effectStyle": {
+      "paint": { "paintStyle": "stroke", "strokeWidth": 2, "color": "#FFFFFF" }
+    },
+    "layeredTextStyles": [
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 4, "color": "#C46509" }
+        },
+        "position": { "y": 4.2, "x": 0 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 3, "color": "#F6B32E" }
+        },
+        "position": { "y": 2, "x": 0 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 4, "color": "#212832" }
+        },
+        "position": { "y": 2, "x": 0 }
+      }
+    ]
+  },
+  {
+    "name": "jungle",
+    "thumbnail": "/styles/jungle.png",
+    "defaultTextColor": "#000000",
+    "effectStyle": {
+      "paint": { "paintStyle": "stroke", "strokeWidth": 2, "color": "#FFFFFF" }
+    },
+    "layeredTextStyles": [
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 4, "color": "#1C4E3D" }
+        },
+        "position": { "y": 4.2, "x": 0 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "stroke", "strokeWidth": 3, "color": "#44AD54" }
+        },
+        "position": { "y": 2, "x": 0 }
+      },
+      {
+        "style": {
+          "paint": { "paintStyle": "fill", "strokeWidth": 4, "color": "#212832" }
+        },
+        "position": { "y": 2, "x": 0 }
+      }
+    ]
+  },
+  {
+    "name": "underline",
+    "thumbnail": "/styles/underline.png",
+    "defaultTextColor": "#FFFFFF",
+    "defaultStyleColor": "#FF3251",
+    "canChangeColor": true,
+    "effectStyle": {
+      "decoration": "underline",
+      "decorationStyle": "solid",
+      "decorationThickness": 10
+    },
+    "baseTextStyle": {
+      "shadows": [
+        { "color": "#000000", "blurRadius": 6, "offsetX": 2, "offsetY": 3 }
+      ]
+    }
+  },
+  {
+    "name": "stroke",
+    "thumbnail": "/styles/stroke.png",
+    "defaultTextColor": "#FF3251",
+    "defaultStyleColor": "#FFFFFF",
+    "canChangeColor": true,
+    "effectStyle": {
+      "paint": { "paintStyle": "stroke", "strokeWidth": 5 }
+    }
+  },
+  {
+    "name": "shadow",
+    "thumbnail": "/styles/shadow.png",
+    "defaultTextColor": "#FFFFFF",
+    "baseTextStyle": {
+      "shadows": [
+        { "color": "#000000", "blurRadius": 6, "offsetX": 2, "offsetY": 3 }
+      ]
+    }
+  }
+]

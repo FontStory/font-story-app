@@ -1,12 +1,12 @@
 import 'dart:convert' show jsonDecode;
 
-import 'package:flutter/material.dart';
-import 'package:font_story/core/helpers/parser.dart';
+import 'package:isolate_manager/isolate_manager.dart';
 
-import '../../domain/entities/index.dart';
+class RelativePositionModel {
+  final double? dx;
+  final double? dy;
 
-class RelativePositionModel extends RelativePosition {
-  const RelativePositionModel({super.dx, super.dy});
+  const RelativePositionModel({this.dx, this.dy});
 
   factory RelativePositionModel.fromJson(Map<String, dynamic> json) {
     return RelativePositionModel(
@@ -16,33 +16,41 @@ class RelativePositionModel extends RelativePosition {
   }
 }
 
-class TextLayerStyleModel extends TextLayerStyle {
-  const TextLayerStyleModel({required super.style, super.position});
+class TextLayerStyleModel {
+  final Map<String, dynamic>? style;
+  final RelativePositionModel? position;
+
+  const TextLayerStyleModel({this.style, this.position});
 
   factory TextLayerStyleModel.fromJson(Map<String, dynamic> json) {
-    final parsedStyle = StyleParser.parseTextStyle(json['style']);
     return TextLayerStyleModel(
-      style: parsedStyle ?? const TextStyle(),
+      style: json['style'] as Map<String, dynamic>?,
       position: json['position'] != null
-          ? RelativePositionModel.fromJson(
-              json['position'] as Map<String, dynamic>,
-            )
+          ? RelativePositionModel.fromJson(json['position'])
           : null,
     );
   }
 }
 
-class TextEffectStyleModel extends TextEffectStyle {
+class TextEffectStyleModel {
+  final String name;
+  final String thumbnail;
+  final String? defaultTextColor;
+  final String? defaultStyleColor;
+  final bool? canChangeColor;
+  final Map<String, dynamic>? baseTextStyle;
+  final Map<String, dynamic>? effectStyle;
+  final List<TextLayerStyleModel>? layeredTextStyles;
+
   const TextEffectStyleModel({
-    required super.id,
-    required super.name,
-    required super.thumbnail,
-    super.defaultTextColor,
-    super.baseTextStyle,
-    super.effectStyle,
-    super.layeredTextStyles,
-    super.defaultStyleColor,
-    super.canChangeColor,
+    required this.name,
+    required this.thumbnail,
+    this.defaultTextColor,
+    this.defaultStyleColor,
+    this.canChangeColor,
+    this.baseTextStyle,
+    this.effectStyle,
+    this.layeredTextStyles,
   });
 
   factory TextEffectStyleModel.fromJson(
@@ -50,34 +58,47 @@ class TextEffectStyleModel extends TextEffectStyle {
     required String baseUrl,
   }) {
     return TextEffectStyleModel(
-      id: (json['name']?.toString().hashCode ?? 0),
       name: json['name'] ?? '',
       thumbnail: '$baseUrl${json['thumbnail']}',
-      defaultTextColor: StyleParser.parseColor(json['defaultTextColor']),
-      baseTextStyle: StyleParser.parseTextStyle(json['baseTextStyle']),
-      effectStyle: StyleParser.parseTextStyle(json['effectStyle']),
+      defaultTextColor: json['defaultTextColor'] as String?,
+      defaultStyleColor: json['defaultStyleColor'] as String?,
+      canChangeColor: json['canChangeColor'] as bool?,
+      baseTextStyle: json['baseTextStyle'] as Map<String, dynamic>?,
+      effectStyle: json['effectStyle'] as Map<String, dynamic>?,
       layeredTextStyles: (json['layeredTextStyles'] as List<dynamic>?)
-          ?.map((e) => TextLayerStyleModel.fromJson(e as Map<String, dynamic>))
+          ?.map((e) => TextLayerStyleModel.fromJson(e))
           .toList(),
-      defaultStyleColor: StyleParser.parseColor(json['defaultStyleColor']),
-      canChangeColor: (json['canChangeColor'] as bool?) ?? false,
     );
   }
 
   @pragma('vm:entry-point')
-  static List<TextEffectStyleModel> parseToUiModel(
-    Map<String, dynamic> payload,
+  @isolateManagerWorker
+  static List<TextEffectStyleModel> fromNestedJson(
+    Map<String, String> payload,
   ) {
-    final List<dynamic> data = jsonDecode(payload['jsonString']);
-    final baseUrl = payload['baseUrl'] as String;
+    final List<TextEffectStyleModel> styles = [];
 
-    return data
-        .map(
-          (json) => TextEffectStyleModel.fromJson(
-            json as Map<String, dynamic>,
-            baseUrl: baseUrl,
-          ),
-        )
-        .toList();
+    final jsonString = payload['jsonString'];
+    final baseUrl = payload['baseUrl'];
+
+    if (jsonString == null || baseUrl == null) return [];
+
+    try {
+      final decodedJson = jsonDecode(jsonString);
+
+      if (decodedJson is! List) return [];
+
+      for (final styleData in decodedJson) {
+        if (styleData is Map<String, dynamic>) {
+          styles.add(
+            TextEffectStyleModel.fromJson(styleData, baseUrl: baseUrl),
+          );
+        }
+      }
+    } catch (e) {
+      rethrow;
+    }
+
+    return styles;
   }
 }
