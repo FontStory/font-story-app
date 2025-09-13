@@ -66,6 +66,7 @@ dependencies:
   google_mobile_ads: ^6.0.0
   dio_cache_interceptor: ^4.0.3
   http_cache_hive_store: ^5.0.1
+  gradient_borders: ^1.0.2
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -103,6 +104,7 @@ flutter:
     - assets/images/
     - assets/translations/
     - .env
+    - assets/test_style.json
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

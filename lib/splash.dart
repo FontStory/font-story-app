@@ -63,15 +63,16 @@ class _SplashScreenState extends State<SplashScreen>
                 constraints: BoxConstraints(
                   maxWidth: MediaQuery.sizeOf(context).width * 0.85,
                 ),
-                child: Image.asset('assets/images/splash.png'),
+                child: Image.asset(
+                  'assets/images/splash.png',
+                  cacheWidth: (MediaQuery.sizeOf(context).width * 0.85).toInt(),
+                ),
               ),
               const Spacer(),
               BlocConsumer<InternetConnectivityCubit, bool>(
                 listener: (context, state) {
-                  if (state) {
-                    if (_animationController.isCompleted) {
-                      context.pushAndRemoveAll(AppRoutePaths.main);
-                    }
+                  if (state && _animationController.isCompleted) {
+                    context.pushAndRemoveAll(AppRoutePaths.main);
                   }
                 },
                 builder: (context, state) {

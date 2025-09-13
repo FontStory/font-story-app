@@ -1,4 +1,3 @@
-
 class FontEntity {
   final int id;
   final String title;

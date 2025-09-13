@@ -92,28 +92,45 @@ class _EditorFieldStyles {
     );
   }
 
-  /// Resolves the text style for the main, editable text layer.
-  static TextStyle buildInputTextStyle(FontStoryState state) {
+  /// Resolves the text style for the main, editable text (supports gradient).
+  static TextStyle buildInputTextStyle(FontStoryState state, String text) {
     final baseStyle =
         state.selectedStyle?.baseTextStyle ??
         AppTypography.heading5.copyWith(fontWeight: null);
 
+    Paint? foreground;
+    if (state.colorSelectionType == ColorSelectionType.gradient) {
+      // Measure text to get width & height
+      final textPainter = TextPainter(
+        text: TextSpan(text: text, style: baseStyle.copyWith(fontSize: state.selectedFontSize)),
+        textDirection: state.isRTLDirection ? TextDirection.rtl : TextDirection.ltr,
+      )..layout();
+
+      final textSize = textPainter.size;
+
+      foreground = Paint()
+        ..shader = state.selectedGradient.createShader(
+          Rect.fromLTWH(0, 0, textSize.width, textSize.height),
+        )
+        ..style = PaintingStyle.fill;
+    }
+
     return baseStyle.copyWith(
       fontFamily: state.selectedFont?.fontFamily ?? baseStyle.fontFamily,
       fontSize: state.selectedFontSize,
-      color: state.selectedColor,
+      color: foreground == null ? state.selectedColor : null,
+      foreground: foreground,
       height: state.lineHeight,
       letterSpacing: state.letterSpacing,
       wordSpacing: state.wordSpacing,
       shadows: _scaleShadows(
         baseStyle.shadows,
         state.selectedFontSize,
-        state.selectedStyleColor,
+        state.selectedColor,
       ),
     );
   }
 
-  /// Scales a list of shadows based on the current font size.
   static List<Shadow> _scaleShadows(
     List<Shadow>? shadows,
     double fontSize,

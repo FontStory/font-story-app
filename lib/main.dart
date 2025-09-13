@@ -21,19 +21,6 @@ part 'app.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // LogManager.instance.initialize();
-  //
-  // await Future.wait([
-  //   dotenv.load(fileName: '.env'),
-  //   EasyLocalization.ensureInitialized(),
-  //   _initializeHydratedBloc(),
-  // ]);
-  //
-  // configureDependencies();
-  // await locator<HiveManager>().init();
-  //
-  // MobileAds.instance.initialize();
-
   LogManager.instance.initialize();
 
   await Future.wait([

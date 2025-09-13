@@ -1,7 +1,8 @@
 part of 'editor_field.dart';
 
-class _TextFieldStack extends StatelessWidget {
-  const _TextFieldStack({
+class TextFieldStack extends StatelessWidget {
+  const TextFieldStack({
+    super.key,
     required this.state,
     required this.controller,
     required this.focusNode,

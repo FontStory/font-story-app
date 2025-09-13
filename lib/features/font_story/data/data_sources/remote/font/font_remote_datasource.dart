@@ -8,10 +8,9 @@ import 'package:font_story/core/helpers/log.dart';
 import 'package:font_story/core/services/api/dio.dart';
 import 'package:injectable/injectable.dart';
 
-part 'datasource_impl.dart';
+part 'font_remote_datasource_impl.dart';
 
-abstract interface class FontStoryRemoteDatasource {
-  Future<String> fetchStylesJson();
+abstract interface class FontRemoteDatasource {
   Future<String> fetchFontsJson();
   Future<Uint8List> downloadFont(String url);
 }

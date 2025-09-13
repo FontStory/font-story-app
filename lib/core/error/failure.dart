@@ -17,6 +17,11 @@ class ServerFailure extends Failure {
     : super(message: message ?? 'went_wrong'.tr());
 }
 
+class LocaleFailure extends Failure {
+  LocaleFailure({String? message})
+    : super(message: message ?? 'went_wrong'.tr());
+}
+
 class NetworkFailure extends Failure {
   NetworkFailure({String? message})
     : super(message: message ?? 'network_connection_error'.tr());

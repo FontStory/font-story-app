@@ -5,17 +5,16 @@ import 'package:font_story/core/usecase/usecase.dart';
 import 'package:injectable/injectable.dart';
 
 import '../entities/font.dart';
-import '../repositories/repository.dart';
+import '../repositories/font_repository.dart';
 
 @injectable
 class GetFonts implements UseCase<List<FontEntity>, Language?> {
-  final FontStoryRepository _repository;
+  final FontRepository _repository;
 
   GetFonts(this._repository);
 
   @override
   Future<Either<Failure, List<FontEntity>>> call(Language? language) async {
-
     return await _repository.getFonts(language);
   }
 }

@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:font_story/config/values/index.dart' show AppDimensions;
 import 'package:font_story/core/extensions/index.dart';
+import 'package:gradient_borders/box_borders/gradient_box_border.dart'
+    show GradientBoxBorder;
 
-class ColorItem extends StatelessWidget {
-  const ColorItem({
+class GradientItem extends StatelessWidget {
+  const GradientItem({
     super.key,
-    required this.color,
+    required this.gradient,
     this.isSelected = false,
-    required this.onColorSelected,
+    required this.onGradientSelected,
   });
 
-  final Color color;
+  final Gradient gradient;
   final bool isSelected;
-  final void Function(Color color) onColorSelected;
+  final void Function(Gradient gradient) onGradientSelected;
 
   @override
   Widget build(BuildContext context) {
@@ -20,31 +22,31 @@ class ColorItem extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         GestureDetector(
-          onTap: () => onColorSelected(color),
+          onTap: () => onGradientSelected(gradient),
           child: isSelected
               ? Container(
-                  width: AppDimensions.colorBox,
-                  height: AppDimensions.colorBox,
-                  padding: 4.all,
+                width: AppDimensions.colorBox,
+                height: AppDimensions.colorBox,
+                padding: 4.all,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  border: GradientBoxBorder(gradient: gradient, width: 3),
+                  color: Colors.transparent,
+                ),
+                child: Container(
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    border: Border.all(width: 3, color: color),
-                    color: Colors.transparent,
+                    gradient: gradient,
                   ),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: color,
-                    ),
-                  ),
-                )
+                ),
+              )
               : Container(
                   width: AppDimensions.colorBox,
                   height: AppDimensions.colorBox,
                   padding: 4.all,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: color,
+                    gradient: gradient,
                   ),
                 ),
         ),
