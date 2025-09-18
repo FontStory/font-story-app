@@ -25,10 +25,9 @@
 
 | Platform       | Link                                                                 |
 |----------------|----------------------------------------------------------------------|
-| 📦 Google Play  | [Coming Soon](#) |
-| 🌐 Web         | [Coming Soon](#)                        |
+| 📦 Google Play  | [Download Now](https://play.google.com/store/apps/details?id=com.studio.moon.font_story&pcampaignid=web_share) |
 | 📁 APK         | [Download Latest APK](https://github.com/FontStory/font-story-app/releases/latest/download/app-release.apk) |
-
+| 🌐 Web         | [Coming Soon](#)                        |
 > No account. No ads. Just pure, creative fun — online or offline.
 
 ## ⚙️ Features
