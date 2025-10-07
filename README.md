@@ -230,7 +230,7 @@ We're open to:
 
 | Maintainer | LinkedIn | Instagram | Telegram | X / Twitter | Gmail | 
 |-------------|------------|-----------|--------------|--------|-----------|
-| [@ariaramin](https://github.com/ariaramin) | [💼 LinkedIn](https://www.linkedin.com/in/ariaramin) | [📸 Instagram](https://instagram.com/aria._.ramin) | [✈️ Telegram](https://t.me/ariaramin7) | [🐦 X/Twitter](https://x.com/ariaramin7) | [📬 Gmail](mailto:ariaramin24@gmail.com) |
+| [@ariaramin](https://github.com/ariaramin) | [💼 LinkedIn](https://www.linkedin.com/in/ariaramindev) | [📸 Instagram](https://instagram.com/aria._.ramin) | [✈️ Telegram](https://t.me/ariaramin7) | [🐦 X/Twitter](https://x.com/ariaramin7) | [📬 Gmail](mailto:ariaramin24@gmail.com) |
 
 
 
