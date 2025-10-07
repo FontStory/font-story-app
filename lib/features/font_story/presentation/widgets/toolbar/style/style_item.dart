@@ -30,7 +30,7 @@ class StyleItem extends StatelessWidget {
           fit: BoxFit.cover,
           imageBuilder: (context, imageProvider) => Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(AppRadius.s),
+              borderRadius: const BorderRadius.all(AppRadius.s),
               border: isSelected
                   ? Border.all(
                       width: AppDimensions.selectedBorderWidth,
@@ -43,7 +43,7 @@ class StyleItem extends StatelessWidget {
           ),
           placeholder: (context, url) => Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(AppRadius.s),
+              borderRadius: const BorderRadius.all(AppRadius.s),
               color: context.palette.surface,
             ),
             child: RepaintBoundary(
@@ -55,7 +55,7 @@ class StyleItem extends StatelessWidget {
           ),
           errorWidget: (context, url, error) => Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(AppRadius.s),
+              borderRadius: const BorderRadius.all(AppRadius.s),
               color: context.palette.surface,
             ),
             child: Icon(
@@ -80,7 +80,7 @@ class SkeletonStyleItem extends StatelessWidget {
       aspectRatio: 1,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(AppRadius.s),
+          borderRadius: const BorderRadius.all(AppRadius.s),
           color: context.palette.surface,
         ),
       ),

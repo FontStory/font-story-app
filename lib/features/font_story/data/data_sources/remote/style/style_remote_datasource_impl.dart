@@ -18,7 +18,7 @@ class StyleDatasourceImpl implements StyleRemoteDatasource {
           : jsonEncode(response.data);
     } on DioException catch (e) {
       LogManager.instance.e('Failed to fetch styles JSON', e, e.stackTrace);
-      throw ApiException(message: 'Could not fetch styles JSON.');
+      throw const ApiException(message: 'Could not fetch styles JSON.');
     }
   }
 }

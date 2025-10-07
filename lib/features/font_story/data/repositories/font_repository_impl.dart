@@ -41,11 +41,15 @@ class FontRepositoryImpl implements FontRepository {
   }
 
   @override
-  Future<Either<Failure, void>> loadFontIntoApp(FontEntity font) {
+  Future<Either<Failure, void>> loadFontIntoApp(
+    FontEntity font, {
+    Function(int, int)? onReceiveProgress,
+  }) {
     return safeApiCall<void>(() async {
       if (!_fontLoader.loadedFontFamilies.contains(font.fontFamily)) {
         final fontBytes = await _remoteDatasource.downloadFont(
           font.toModel().path,
+          onReceiveProgress: onReceiveProgress,
         );
         await _fontLoader.load(fontFamily: font.fontFamily, bytes: fontBytes);
       }

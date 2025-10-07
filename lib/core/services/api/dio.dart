@@ -85,10 +85,14 @@ class DioService {
     return _dio.delete(path, data: data, queryParameters: queryParameters);
   }
 
-  Future<Response<List<int>>> download(String absoluteUrl) {
+  Future<Response<List<int>>> download(
+    String absoluteUrl, {
+    Function(int, int)? onReceiveProgress,
+  }) {
     return _dioForDownloads.get<List<int>>(
       absoluteUrl,
       options: Options(responseType: ResponseType.bytes),
+      onReceiveProgress: onReceiveProgress,
     );
   }
 }

@@ -18,14 +18,23 @@ class FontDatasourceImpl implements FontRemoteDatasource {
           : jsonEncode(response.data);
     } on DioException catch (e) {
       LogManager.instance.e('Failed to fetch fonts JSON', e, e.stackTrace);
-      throw ApiException(message: 'Could not fetch fonts JSON.');
+      throw ApiException(
+        message: 'Could not fetch fonts JSON.',
+        code: e.response?.statusCode,
+      );
     }
   }
 
   @override
-  Future<Uint8List> downloadFont(String url) async {
+  Future<Uint8List> downloadFont(
+    String url, {
+    Function(int, int)? onReceiveProgress,
+  }) async {
     try {
-      final response = await _dioService.download(url);
+      final response = await _dioService.download(
+        url,
+        onReceiveProgress: onReceiveProgress,
+      );
       return Uint8List.fromList(response.data!);
     } on DioException catch (e) {
       LogManager.instance.e('Font download failed from $url', e, e.stackTrace);

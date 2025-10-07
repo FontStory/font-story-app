@@ -1,4 +1,6 @@
-import 'package:font_story/core/helpers/parser.dart';
+import 'package:font_story/core/extensions/string.dart';
+import 'package:font_story/core/helpers/parsers/box_decoration_parser.dart';
+import 'package:font_story/core/helpers/parsers/text_style_parser.dart';
 
 import '../../domain/entities/style.dart';
 import '../models/style.dart';
@@ -9,7 +11,7 @@ extension RelativePositionMapper on RelativePositionModel {
 
 extension TextLayerStyleMapper on TextLayerStyleModel {
   TextLayerStyle toEntity() {
-    final style = StyleParser.parseTextStyle(this.style);
+    final style = TextStyleParser.parseTextStyle(this.style);
     if (style == null) {
       throw const FormatException('TextLayerStyle has no valid style.');
     }
@@ -22,15 +24,25 @@ extension TextEffectStyleMapper on TextEffectStyleModel {
     id: name.hashCode,
     name: name,
     thumbnail: thumbnail,
-    defaultTextColor: StyleParser.parseColor(defaultTextColor),
-    defaultStyleColor: StyleParser.parseColor(defaultStyleColor),
-    canChangeColor: canChangeColor ?? false,
-    baseTextStyle: StyleParser.parseTextStyle(baseTextStyle),
-    effectStyle: StyleParser.parseTextStyle(effectStyle),
+    defaultTextColor: (defaultTextColor)?.parseColor,
+    defaultStyleColor: (defaultStyleColor)?.parseColor,
+    baseTextStyle: TextStyleParser.parseTextStyle(baseTextStyle),
+    effectStyle: TextStyleParser.parseTextStyle(effectStyle),
     layeredTextStyles: layeredTextStyles?.map((e) => e.toEntity()).toList(),
+    boxDecoration: BoxDecorationParser.parseBoxDecoration(
+      containerDecoration?['boxDecoration'],
+    ),
+    boxPadding: BoxDecorationParser.parsePadding(
+      containerDecoration?['padding'],
+    ),
+    topImage: topImage,
+    bottomImage: bottomImage,
+    canChangeColor: canChangeColor ?? false,
+    canChangeDecoration: canChangeDecoration ?? false,
   );
 }
 
-extension StyleListMapper on List<TextEffectStyleModel> {
-  List<TextEffectStyle> toEntityList() => map((m) => m.toEntity()).toList();
+@pragma('vm:entry-point')
+List<TextEffectStyle> mapTextEffectStyles(List<TextEffectStyleModel> models) {
+  return models.map((m) => m.toEntity()).toList();
 }

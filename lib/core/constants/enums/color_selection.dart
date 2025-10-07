@@ -1,0 +1,1 @@
+enum ColorSelectionType { color, gradient }

@@ -1,153 +1,184 @@
-part of 'editor_field.dart';
+part of 'text_field_stack.dart';
 
 class _EditorFieldStyles {
-  /// Resolves and scales the text style for the main background layer.
-  static TextStyle buildEffectStyle(FontStoryState state) {
+  const _EditorFieldStyles._();
+
+  /// Main background layer style.
+  static TextStyle buildEffectStyle(
+    FontSelectionState fontState,
+    StyleSelectionState styleState,
+    ColorSelectionState colorState,
+    TextFormattingState formattingState,
+  ) {
     final baseStyle =
-        state.selectedStyle?.effectStyle ??
+        styleState.selectedStyle?.effectStyle ??
         AppTypography.heading5.copyWith(fontWeight: null);
-    final scaleFactor = state.selectedFontSize / kBaseFontSize;
 
-    Paint? newBackground;
-    if (baseStyle.background is Paint) {
-      final oldPaint = baseStyle.background as Paint;
-      newBackground = Paint()
-        ..color = state.selectedStyleColor
-        ..strokeWidth = oldPaint.strokeWidth
-        ..style = oldPaint.style
-        ..maskFilter = oldPaint.maskFilter
-        ..filterQuality = oldPaint.filterQuality
-        ..strokeCap = oldPaint.strokeCap
-        ..strokeJoin = oldPaint.strokeJoin;
-    }
-
-    Paint? newForeground;
-    if (baseStyle.foreground is Paint) {
-      final oldPaint = baseStyle.foreground as Paint;
-      newForeground = Paint()
-        ..color = oldPaint.color
-        ..strokeWidth = oldPaint.strokeWidth * scaleFactor
-        ..style = oldPaint.style
-        ..maskFilter = oldPaint.maskFilter
-        ..filterQuality = oldPaint.filterQuality
-        ..strokeCap = oldPaint.strokeCap
-        ..strokeJoin = oldPaint.strokeJoin;
-
-      if (state.selectedStyle?.canChangeColor ?? false) {
-        newForeground.color = state.selectedStyleColor;
-      }
-    }
-
-    return baseStyle.copyWith(
-      fontFamily: state.selectedFont?.fontFamily ?? baseStyle.fontFamily,
-      fontSize: state.selectedFontSize,
-      color: baseStyle.foreground == null ? Colors.transparent : null,
-      decorationColor: state.selectedStyleColor,
-      background: newBackground,
-      foreground: newForeground,
-      height: state.lineHeight,
-      letterSpacing: state.letterSpacing,
-      wordSpacing: state.wordSpacing,
-      shadows: _scaleShadows(
-        baseStyle.shadows ?? const [],
-        state.selectedFontSize,
-        state.selectedStyleColor,
-      ),
+    return _applyCommonStyle(
+      baseStyle: baseStyle,
+      fontState: fontState,
+      styleState: styleState,
+      colorState: colorState,
+      formattingState: formattingState,
+      allowColorChange: styleState.selectedStyle?.canChangeColor ?? false,
+      backgroundColor: colorState.selectedStyleColor,
     );
   }
 
-  /// Resolves and scales the text style for additional background layers.
-  static TextStyle buildLayerStyle(FontStoryState state, int index) {
+  /// Additional layered text styles.
+  static TextStyle buildLayerStyle(
+    FontSelectionState fontState,
+    StyleSelectionState styleState,
+    ColorSelectionState colorState,
+    TextFormattingState formattingState,
+    int index,
+  ) {
     final baseStyle =
-        state.selectedStyle?.layeredTextStyles?[index].style ??
+        styleState.selectedStyle?.layeredTextStyles?[index].style ??
         AppTypography.heading5.copyWith(fontWeight: null);
-    final scaleFactor = state.selectedFontSize / kBaseFontSize;
 
-    Paint? newForeground;
-    if (baseStyle.foreground is Paint) {
-      final oldPaint = baseStyle.foreground as Paint;
-      newForeground = Paint()
-        ..color = oldPaint.color
-        ..strokeWidth = oldPaint.strokeWidth * scaleFactor
-        ..style = oldPaint.style
-        ..maskFilter = oldPaint.maskFilter
-        ..filterQuality = oldPaint.filterQuality
-        ..strokeCap = oldPaint.strokeCap
-        ..strokeJoin = oldPaint.strokeJoin;
-    }
-
-    return baseStyle.copyWith(
-      fontFamily: state.selectedFont?.fontFamily ?? baseStyle.fontFamily,
-      fontSize: state.selectedFontSize,
-      color: baseStyle.foreground == null ? Colors.transparent : null,
-      foreground: newForeground,
-      height: state.lineHeight,
-      letterSpacing: state.letterSpacing,
-      wordSpacing: state.wordSpacing,
-      shadows: _scaleShadows(
-        baseStyle.shadows,
-        state.selectedFontSize,
-        state.selectedStyleColor,
-      ),
+    return _applyCommonStyle(
+      baseStyle: baseStyle,
+      fontState: fontState,
+      styleState: styleState,
+      colorState: colorState,
+      formattingState: formattingState,
     );
   }
 
-  /// Resolves the text style for the main, editable text (supports gradient).
-  static TextStyle buildInputTextStyle(FontStoryState state, String text) {
+  /// Editable input text (supports gradient).
+  static TextStyle buildInputTextStyle(
+    FontSelectionState fontState,
+    StyleSelectionState styleState,
+    ColorSelectionState colorState,
+    TextFormattingState formattingState,
+    String text,
+  ) {
     final baseStyle =
-        state.selectedStyle?.baseTextStyle ??
+        styleState.selectedStyle?.baseTextStyle ??
         AppTypography.heading5.copyWith(fontWeight: null);
 
-    Paint? foreground;
-    if (state.colorSelectionType == ColorSelectionType.gradient) {
-      // Measure text to get width & height
-      final textPainter = TextPainter(
-        text: TextSpan(text: text, style: baseStyle.copyWith(fontSize: state.selectedFontSize)),
-        textDirection: state.isRTLDirection ? TextDirection.rtl : TextDirection.ltr,
-      )..layout();
-
-      final textSize = textPainter.size;
-
-      foreground = Paint()
-        ..shader = state.selectedGradient.createShader(
+    Paint? gradientPaint;
+    if (colorState.colorSelectionType == ColorSelectionType.gradient) {
+      final textSize = _measureTextSize(
+        text: text,
+        style: baseStyle.copyWith(fontSize: formattingState.selectedFontSize),
+        isRTL: formattingState.isRTLDirection,
+      );
+      gradientPaint = Paint()
+        ..shader = colorState.selectedGradient.createShader(
           Rect.fromLTWH(0, 0, textSize.width, textSize.height),
         )
         ..style = PaintingStyle.fill;
     }
 
     return baseStyle.copyWith(
-      fontFamily: state.selectedFont?.fontFamily ?? baseStyle.fontFamily,
-      fontSize: state.selectedFontSize,
-      color: foreground == null ? state.selectedColor : null,
-      foreground: foreground,
-      height: state.lineHeight,
-      letterSpacing: state.letterSpacing,
-      wordSpacing: state.wordSpacing,
+      fontFamily: fontState.selectedFont?.fontFamily ?? baseStyle.fontFamily,
+      fontSize: formattingState.selectedFontSize,
+      color: gradientPaint == null ? colorState.selectedColor : null,
+      foreground: gradientPaint,
+      height: formattingState.lineHeight,
+      letterSpacing: formattingState.letterSpacing < 0
+          ? formattingState.letterSpacing
+          : 0,
+      wordSpacing: formattingState.wordSpacing,
       shadows: _scaleShadows(
-        baseStyle.shadows,
-        state.selectedFontSize,
-        state.selectedColor,
+        baseStyle.shadows?.cast<BoxShadow>(),
+        formattingState.selectedFontSize,
+        colorState.selectedColor,
       ),
     );
   }
 
+  /// --- Helpers ---
+  static TextStyle _applyCommonStyle({
+    required TextStyle baseStyle,
+    required FontSelectionState fontState,
+    required StyleSelectionState styleState,
+    required ColorSelectionState colorState,
+    required TextFormattingState formattingState,
+    bool allowColorChange = false,
+    Color? backgroundColor,
+  }) {
+    final scaleFactor = formattingState.selectedFontSize / kBaseFontSize;
+
+    final newBackground = _clonePaint(
+      baseStyle.background,
+      color: backgroundColor,
+    );
+    final newForeground = _clonePaint(
+      baseStyle.foreground,
+      scaleFactor: scaleFactor,
+      overrideColor: allowColorChange ? colorState.selectedStyleColor : null,
+    );
+
+    return baseStyle.copyWith(
+      fontFamily: fontState.selectedFont?.fontFamily ?? baseStyle.fontFamily,
+      fontSize: formattingState.selectedFontSize,
+      color: baseStyle.foreground == null ? Colors.transparent : null,
+      decorationColor: colorState.selectedStyleColor,
+      background: newBackground,
+      foreground: newForeground,
+      height: formattingState.lineHeight,
+      letterSpacing: formattingState.letterSpacing < 0
+          ? formattingState.letterSpacing
+          : 0,
+      wordSpacing: formattingState.wordSpacing,
+      shadows: _scaleShadows(
+        baseStyle.shadows?.cast<BoxShadow>(),
+        formattingState.selectedFontSize,
+        colorState.selectedStyleColor,
+      ),
+    );
+  }
+
+  static Paint? _clonePaint(
+    Paint? paint, {
+    double scaleFactor = 1.0,
+    Color? color,
+    Color? overrideColor,
+  }) {
+    if (paint == null) return null;
+    return Paint()
+      ..color = overrideColor ?? color ?? paint.color
+      ..strokeWidth = paint.strokeWidth * scaleFactor
+      ..style = paint.style
+      ..maskFilter = paint.maskFilter
+      ..filterQuality = paint.filterQuality
+      ..strokeCap = paint.strokeCap
+      ..strokeJoin = paint.strokeJoin;
+  }
+
+  static Size _measureTextSize({
+    required String text,
+    required TextStyle style,
+    required bool isRTL,
+  }) {
+    final textPainter = TextPainter(
+      text: TextSpan(text: text, style: style),
+      textDirection: isRTL ? TextDirection.rtl : TextDirection.ltr,
+    )..layout();
+    return textPainter.size;
+  }
+
   static List<Shadow> _scaleShadows(
-    List<Shadow>? shadows,
+    List<BoxShadow>? shadows,
     double fontSize,
     Color newShadowColor,
   ) {
-    if (shadows == null) return [];
+    if (shadows == null || shadows.isEmpty) return const [];
     final scaleFactor = fontSize / kBaseFontSize;
     return shadows
         .map(
-          (shadow) => Shadow(
+          (shadow) => BoxShadow(
             color: shadow.color == Colors.transparent
                 ? newShadowColor
                 : shadow.color,
             blurRadius: shadow.blurRadius * scaleFactor,
+            spreadRadius: shadow.spreadRadius * scaleFactor,
             offset: shadow.offset * scaleFactor,
           ),
         )
-        .toList();
+        .toList(growable: false);
   }
 }

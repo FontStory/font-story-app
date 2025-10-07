@@ -12,5 +12,8 @@ part 'font_remote_datasource_impl.dart';
 
 abstract interface class FontRemoteDatasource {
   Future<String> fetchFontsJson();
-  Future<Uint8List> downloadFont(String url);
+  Future<Uint8List> downloadFont(
+    String url, {
+    Function(int, int)? onReceiveProgress,
+  });
 }

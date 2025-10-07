@@ -37,20 +37,28 @@ class TextEffectStyleModel {
   final String thumbnail;
   final String? defaultTextColor;
   final String? defaultStyleColor;
-  final bool? canChangeColor;
   final Map<String, dynamic>? baseTextStyle;
   final Map<String, dynamic>? effectStyle;
   final List<TextLayerStyleModel>? layeredTextStyles;
+  final Map<String, dynamic>? containerDecoration;
+  final String? topImage;
+  final String? bottomImage;
+  final bool? canChangeColor;
+  final bool? canChangeDecoration;
 
   const TextEffectStyleModel({
     required this.name,
     required this.thumbnail,
     this.defaultTextColor,
     this.defaultStyleColor,
-    this.canChangeColor,
     this.baseTextStyle,
     this.effectStyle,
     this.layeredTextStyles,
+    this.containerDecoration,
+    this.topImage,
+    this.bottomImage,
+    this.canChangeColor,
+    this.canChangeDecoration,
   });
 
   factory TextEffectStyleModel.fromJson(
@@ -62,12 +70,18 @@ class TextEffectStyleModel {
       thumbnail: '$baseUrl${json['thumbnail']}',
       defaultTextColor: json['defaultTextColor'] as String?,
       defaultStyleColor: json['defaultStyleColor'] as String?,
-      canChangeColor: json['canChangeColor'] as bool?,
       baseTextStyle: json['baseTextStyle'] as Map<String, dynamic>?,
       effectStyle: json['effectStyle'] as Map<String, dynamic>?,
       layeredTextStyles: (json['layeredTextStyles'] as List<dynamic>?)
           ?.map((e) => TextLayerStyleModel.fromJson(e))
           .toList(),
+      containerDecoration: json['containerDecoration'] as Map<String, dynamic>?,
+      topImage: json['topImage'] == null ? null : '$baseUrl${json['topImage']}',
+      bottomImage: json['bottomImage'] == null
+          ? null
+          : '$baseUrl${json['bottomImage']}',
+      canChangeColor: json['canChangeColor'] as bool?,
+      canChangeDecoration: json['canChangeDecoration'] as bool?,
     );
   }
 

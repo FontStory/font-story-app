@@ -41,10 +41,9 @@ class AppTheme {
       ),
       dialogTheme: DialogThemeData(
         backgroundColor: colorPalette.surface,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.all(AppRadius.lg)
-        )
-        
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(AppRadius.xlg),
+        ),
       ),
       extensions: [colorPalette, typography],
     );

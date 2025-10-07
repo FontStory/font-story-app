@@ -1,9 +1,9 @@
 import 'package:equatable/equatable.dart';
-import 'package:flutter/material.dart';
-import 'package:hydrated_bloc/hydrated_bloc.dart';
+import 'package:flutter/material.dart' show Color, Gradient, ThemeData;
 import 'package:font_story/config/themes/theme.dart';
-import 'package:font_story/config/values/gradient.dart';
-import 'package:font_story/config/values/palette.dart';
+import 'package:font_story/config/values/index.dart'
+    show AppGradient, AppPalette;
+import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
 
 part 'theme_state.dart';

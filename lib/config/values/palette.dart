@@ -52,4 +52,18 @@ class AppPalette {
     Colors.grey,
     Colors.blueGrey,
   ];
+
+  static const List<Color> colorOptionList = [
+    Colors.white,
+    Colors.black,
+    Colors.red,
+    Colors.pink,
+    Colors.purple,
+    Colors.blue,
+    Colors.green,
+    Colors.yellow,
+    Colors.orange,
+    Colors.brown,
+    Colors.grey,
+  ];
 }

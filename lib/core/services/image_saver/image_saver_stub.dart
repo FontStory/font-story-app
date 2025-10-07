@@ -10,7 +10,6 @@ class FallbackImageSaver implements ImageSaver {
     throw Exception('save() not implemented on this platform.');
   }
 
-  @override
   Future<void> downloadAndSave(String imageUrl) async {
     throw Exception('downloadAndSave() not implemented on this platform.');
   }

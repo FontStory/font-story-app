@@ -52,7 +52,7 @@ class _FontItemState extends State<FontItem>
                         ? 18.top + 4.horizontal
                         : 4.horizontal,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(AppRadius.s),
+                      borderRadius: const BorderRadius.all(AppRadius.s),
                       border: widget.isSelected
                           ? Border.all(
                               width: AppDimensions.selectedBorderWidth,
@@ -107,7 +107,7 @@ class _FontItemState extends State<FontItem>
       child: Container(
         padding: 2.vertical + 4.horizontal,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(AppRadius.xs),
+          borderRadius: const BorderRadius.all(AppRadius.xs),
           color: context.palette.onSurface.withValues(alpha: 0.2),
         ),
         child: Text(
@@ -134,7 +134,7 @@ class SkeletonFontItem extends StatelessWidget {
       aspectRatio: 1,
       child: Container(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.all(AppRadius.s),
+          borderRadius: const BorderRadius.all(AppRadius.s),
           color: context.palette.surface,
         ),
       ),

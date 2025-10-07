@@ -7,5 +7,8 @@ import '../entities/font.dart';
 abstract interface class FontRepository {
   Future<Either<Failure, List<FontEntity>>> getFonts(Language? language);
 
-  Future<Either<Failure, void>> loadFontIntoApp(FontEntity font);
+  Future<Either<Failure, void>> loadFontIntoApp(
+    FontEntity font, {
+    Function(int, int)? onReceiveProgress,
+  });
 }

@@ -10,7 +10,7 @@ extension FontMapper on FontModel {
       title: title,
       fontFamily: fontFamily,
       path: path,
-      language: language?.capitalize(),
+      language: language?.capitalize,
     );
   }
 }

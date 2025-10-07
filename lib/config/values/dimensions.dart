@@ -1,6 +1,7 @@
 class AppDimensions {
   AppDimensions._();
 
+  static const double iconSmall = 20.0;
   static const double icon = 24.0;
   static const double iconLarge = 32.0;
   static const double iconButton = 42.0;

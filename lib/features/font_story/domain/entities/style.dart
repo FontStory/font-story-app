@@ -21,9 +21,14 @@ class TextEffectStyle {
   final List<TextLayerStyle>? layeredTextStyles;
   final TextStyle? baseTextStyle;
   final TextStyle? effectStyle;
+  final BoxDecoration? boxDecoration;
+  final EdgeInsets? boxPadding;
+  final String? topImage;
+  final String? bottomImage;
   final Color? defaultTextColor;
   final Color? defaultStyleColor;
   final bool canChangeColor;
+  final bool canChangeDecoration;
 
   const TextEffectStyle({
     required this.id,
@@ -33,7 +38,12 @@ class TextEffectStyle {
     this.layeredTextStyles,
     this.baseTextStyle,
     this.effectStyle,
+    this.boxDecoration,
+    this.boxPadding,
+    this.topImage,
+    this.bottomImage,
     this.defaultStyleColor,
     this.canChangeColor = false,
+    this.canChangeDecoration = false,
   });
 }

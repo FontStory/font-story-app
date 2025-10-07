@@ -24,17 +24,9 @@ class StyleRepositoryImpl implements StyleRepository {
 
   @override
   Future<Either<Failure, List<TextEffectStyle>>> getStylesFromRemote() {
-    return safeApiCall<List<TextEffectStyle>>(() async {
+    return safeApiCall(() async {
       final jsonString = await _remoteDatasource.fetchStylesJson();
-
-      final payload = {'jsonString': jsonString, 'baseUrl': baseUrl};
-
-      final styleModels = await IsolateManager.runFunction(
-        TextEffectStyleModel.fromNestedJson,
-        payload,
-      );
-
-      return styleModels.toEntityList();
+      return await _parseAndMapStyles(jsonString);
     });
   }
 
@@ -42,19 +34,31 @@ class StyleRepositoryImpl implements StyleRepository {
   Future<Either<Failure, List<TextEffectStyle>>> getStylesFromLocal() async {
     try {
       final jsonString = await _localDatasource.getStylesJson();
-
-      final payload = {'jsonString': jsonString, 'baseUrl': baseUrl};
-
-      final styleModels = await IsolateManager.runFunction(
-        TextEffectStyleModel.fromNestedJson,
-        payload,
-      );
-
-      return Right(styleModels.toEntityList());
+      final styles = await _parseAndMapStyles(jsonString);
+      return Right(styles);
     } on LocaleException catch (e) {
       return Left(LocaleFailure(message: e.message));
-    } catch (e) {
+    } catch (_) {
       return Left(UnknownFailure(message: 'errors.unknown'.tr()));
     }
+  }
+
+  /// Parses JSON into models and maps to entities using a single isolate
+  Future<List<TextEffectStyle>> _parseAndMapStyles(String jsonString) async {
+    final payload = {'jsonString': jsonString, 'baseUrl': baseUrl};
+
+    // Parse models in isolate
+    final List<TextEffectStyleModel> models = await IsolateManager.runFunction(
+      TextEffectStyleModel.fromNestedJson,
+      payload,
+    );
+
+    // Map models to entities in same isolate
+    final List<TextEffectStyle> styles = await IsolateManager.runFunction(
+      mapTextEffectStyles,
+      models,
+    );
+
+    return styles;
   }
 }

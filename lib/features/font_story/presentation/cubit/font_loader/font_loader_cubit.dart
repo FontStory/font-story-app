@@ -10,25 +10,28 @@ part 'font_loader_state.dart';
 class FontLoaderCubit extends Cubit<FontLoaderState> {
   final LoadFont _loadFont;
 
-  FontLoaderCubit(this._loadFont) : super(FontLoaderState());
+  FontLoaderCubit(this._loadFont) : super(const FontLoaderState());
 
   void loadFont(FontEntity font) async {
     if (state.status == DataStatus.loading) return;
 
-    emit(state.copyWith(status: DataStatus.loading));
+    emit(state.copyWith(status: DataStatus.loading, progress: 0));
 
-    final result = await _loadFont(font);
+    final result = await _loadFont.callWithProgress(
+      font,
+      onReceiveProgress: (received, total) {
+        if (total != -1) {
+          final percent = ((received / total) * 100).floor();
+          emit(state.copyWith(progress: percent));
+        }
+      },
+    );
 
-    // Check if the Cubit was closed during the await call.
     if (isClosed) return;
 
     result.fold(
-      (failure) {
-        emit(state.copyWith(status: DataStatus.error));
-      },
-      (data) {
-        emit(state.copyWith(status: DataStatus.success));
-      },
+      (failure) => emit(state.copyWith(status: DataStatus.error)),
+      (_) => emit(state.copyWith(status: DataStatus.success, progress: 100)),
     );
   }
 }

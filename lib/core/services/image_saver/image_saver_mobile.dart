@@ -1,5 +1,5 @@
-import 'dart:typed_data';
 import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:font_story/locator/service_locator.dart';
 import 'package:image_gallery_saver/image_gallery_saver.dart';

@@ -6,10 +6,12 @@ class ColorPickerItem extends StatelessWidget {
   const ColorPickerItem({
     super.key,
     required this.defaultColor,
+    this.isSmall = false,
     required this.onColorChanged,
   });
 
   final Color defaultColor;
+  final bool isSmall;
   final Function(Color) onColorChanged;
 
   @override
@@ -25,9 +27,9 @@ class ColorPickerItem extends StatelessWidget {
             );
           },
           child: Container(
-            width: AppDimensions.colorBox,
-            height: AppDimensions.colorBox,
-            decoration: BoxDecoration(
+            width: isSmall ? AppDimensions.iconLarge : AppDimensions.colorBox,
+            height: isSmall ? AppDimensions.iconLarge : AppDimensions.colorBox,
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage('assets/images/color_wheel.png'),
                 fit: BoxFit.cover,

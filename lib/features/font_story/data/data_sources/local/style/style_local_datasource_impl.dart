@@ -14,7 +14,7 @@ class StyleLocalDatasourceImpl implements StyleLocalDatasource {
       return jsonString;
     } catch (e) {
       LogManager.instance.e('Failed to get styles JSON', e);
-      throw LocaleException(message: 'Could not get styles JSON.');
+      throw const LocaleException(message: 'Could not get styles JSON.');
     }
   }
 }

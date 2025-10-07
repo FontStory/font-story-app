@@ -4,9 +4,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_story/config/values/index.dart';
 import 'package:font_story/core/common/localization/cubit/localization_cubit.dart';
 import 'package:font_story/core/common/theme/theme_cubit.dart';
+import 'package:font_story/core/components/bottom_sheets/language_sheet.dart';
 import 'package:font_story/core/components/buttons/button.dart';
 import 'package:font_story/core/components/buttons/icon_button.dart';
-import 'package:font_story/core/components/bottom_sheets/language_sheet.dart';
 import 'package:font_story/core/constants/global.dart';
 import 'package:font_story/core/extensions/index.dart';
 import 'package:font_story/core/helpers/launch_url.dart';
@@ -34,7 +34,7 @@ class Header extends StatelessWidget {
             }
           },
         ),
-        Spacer(),
+        const Spacer(),
         AppIconButton.tonal(
           context: context,
           icon: Iconsax.global_copy,
@@ -42,7 +42,7 @@ class Header extends StatelessWidget {
             context.showCustomBottomSheet(
               content: BlocProvider.value(
                 value: context.read<LocalizationCubit>(),
-                child: LanguageSheet(),
+                child: const LanguageSheet(),
               ),
             );
           },
@@ -53,7 +53,7 @@ class Header extends StatelessWidget {
             width: AppDimensions.icon,
             height: AppDimensions.icon,
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(AppRadius.s),
+              borderRadius: const BorderRadius.all(AppRadius.s),
               border: Border.all(width: 1, color: context.palette.onSurface),
               gradient: context.watch<ThemeCubit>().state.gradient,
             ),

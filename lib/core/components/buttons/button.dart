@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:font_story/config/values/index.dart';
 import 'package:font_story/core/extensions/index.dart';
-
-import '../../../config/values/index.dart';
 
 enum AppButtonSize {
   /// Extra small button size
@@ -143,7 +142,7 @@ class AppButton extends StatelessWidget {
           return backgroundColor;
         }),
         shape: WidgetStateProperty.resolveWith((states) {
-          final shape = RoundedRectangleBorder(
+          final shape = const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(AppRadius.md),
           );
 
@@ -197,7 +196,7 @@ class AppButton extends StatelessWidget {
         children: [
           if (leading != null) ...[
             leading!(onTap != null ? textColor : disabledTextColor),
-            SizedBox(width: AppSpacing.sm),
+            const SizedBox(width: AppSpacing.sm),
           ],
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: AppSpacing.xxs),
@@ -209,7 +208,7 @@ class AppButton extends StatelessWidget {
             ),
           ),
           if (trailing != null) ...[
-            SizedBox(width: AppSpacing.sm),
+            const SizedBox(width: AppSpacing.sm),
             trailing!(onTap != null ? textColor : disabledTextColor),
           ],
         ],

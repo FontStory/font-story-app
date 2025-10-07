@@ -12,6 +12,16 @@ class LoadFont implements UseCase<void, FontEntity> {
 
   LoadFont(this._repository);
 
+  Future<Either<Failure, void>> callWithProgress(
+    FontEntity param, {
+    Function(int, int)? onReceiveProgress,
+  }) async {
+    return await _repository.loadFontIntoApp(
+      param,
+      onReceiveProgress: onReceiveProgress,
+    );
+  }
+
   @override
   Future<Either<Failure, void>> call(FontEntity param) async {
     return await _repository.loadFontIntoApp(param);

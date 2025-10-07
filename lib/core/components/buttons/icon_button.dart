@@ -83,7 +83,7 @@ class AppIconButton extends StatelessWidget {
         elevation: WidgetStateProperty.all(0),
         splashFactory: NoSplash.splashFactory,
         shape: WidgetStateProperty.resolveWith((states) {
-          final shape = RoundedRectangleBorder(
+          final shape = const RoundedRectangleBorder(
             borderRadius: BorderRadius.all(AppRadius.md),
           );
           if (states.contains(WidgetState.disabled)) {
@@ -118,7 +118,7 @@ class AppIconButton extends StatelessWidget {
         }),
         iconSize: WidgetStateProperty.all(AppDimensions.icon),
         fixedSize: WidgetStateProperty.all(
-          Size.square(AppDimensions.iconButton),
+          const Size.square(AppDimensions.iconButton),
         ),
         padding: WidgetStateProperty.all(EdgeInsets.zero),
         tapTargetSize: MaterialTapTargetSize.shrinkWrap,

@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_colorpicker/flutter_colorpicker.dart';
-import 'package:font_story/core/extensions/index.dart';
 import 'package:font_story/config/values/index.dart';
+import 'package:font_story/core/extensions/index.dart';
 
 import '../components/bottom_sheets/bottom_sheet.dart';
 import '../components/buttons/button.dart';
@@ -12,8 +12,10 @@ import '../components/buttons/button.dart';
 extension OverlayExtension on BuildContext {
   void showCustomBottomSheet({
     required Widget content,
+    List<Widget>? actions,
     bool isDismissible = true,
     bool enableDrag = true,
+    bool hasFixedHeight = false,
     Color backgroundOverlayColor = Colors.black54,
     Duration animationDuration = const Duration(milliseconds: 300),
     Curve animationCurve = Curves.easeInOut,
@@ -29,10 +31,13 @@ extension OverlayExtension on BuildContext {
         vsync: navigator,
         duration: animationDuration,
       ),
+      useSafeArea: true,
       builder: (BuildContext context) {
         return BottomSheetContent(
           content: content,
           animationCurve: animationCurve,
+          hasFixedHeight: hasFixedHeight,
+          actions: actions,
         );
       },
     );
@@ -100,7 +105,7 @@ extension OverlayExtension on BuildContext {
           child: AlertDialog(
             contentPadding: AppSpacing.xl.all,
             backgroundColor: context.palette.surface,
-            shape: RoundedRectangleBorder(
+            shape: const RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
                 top: AppRadius.circle,
                 bottom: AppRadius.xlg,

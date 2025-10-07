@@ -14,7 +14,7 @@ class BottomToolbarTab extends StatelessWidget {
     return Container(
       padding: 8.vertical + 10.horizontal,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(AppRadius.circle),
+        borderRadius: const BorderRadius.all(AppRadius.circle),
         color: context.palette.onBackground,
       ),
       child: TabBar(
@@ -22,7 +22,7 @@ class BottomToolbarTab extends StatelessWidget {
         tabAlignment: TabAlignment.center,
         dividerHeight: 0,
         indicator: BoxDecoration(
-          borderRadius: BorderRadius.all(AppRadius.circle),
+          borderRadius: const BorderRadius.all(AppRadius.circle),
           color: context.palette.primary,
         ),
         indicatorSize: TabBarIndicatorSize.tab,

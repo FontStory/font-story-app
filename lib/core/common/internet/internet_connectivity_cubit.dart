@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/foundation.dart' show kIsWeb;
 import 'package:font_story/core/services/network.dart';
 import 'package:injectable/injectable.dart';
 
@@ -6,9 +7,13 @@ import 'package:injectable/injectable.dart';
 class InternetConnectivityCubit extends Cubit<bool> {
   final NetworkManager _networkManager;
 
-  InternetConnectivityCubit(this._networkManager) : super(false);
+  InternetConnectivityCubit(this._networkManager) : super(true);
 
   Future<void> checkInternetConnection() async {
+    if (kIsWeb) {
+      emit(true);
+      return;
+    }
     if (await _networkManager.isConnected &&
         await _networkManager.checkNetworkConnection()) {
       emit(true);

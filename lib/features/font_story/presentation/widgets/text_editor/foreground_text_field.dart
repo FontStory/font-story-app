@@ -1,40 +1,50 @@
-part of 'editor_field.dart';
+part of 'text_field_stack.dart';
 
 /// The main, editable text field that is visible to the user.
 class _ForegroundTextField extends StatelessWidget {
   const _ForegroundTextField({
-    required this.state,
+    required this.fontState,
+    required this.styleState,
+    required this.colorState,
+    required this.formattingState,
     required this.controller,
     required this.focusNode,
-    required this.decoration,
+    this.decoration,
   });
 
-  final FontStoryState state;
-  final TextEditingController controller;
+  final FontSelectionState fontState;
+  final StyleSelectionState styleState;
+  final ColorSelectionState colorState;
+  final TextFormattingState formattingState;
+  final HighlightController controller;
   final FocusNode focusNode;
-  final InputDecoration decoration;
+  final InputDecoration? decoration;
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicWidth(
-      child: TextField(
-        scrollPhysics: const NeverScrollableScrollPhysics(),
-        maxLines: null,
-        controller: controller,
-        focusNode: focusNode,
-        autofocus: true,
-        showCursor: true,
-        autocorrect: true,
-        textAlignVertical: TextAlignVertical.center,
-        cursorColor: context.palette.onSurface,
-        style: _EditorFieldStyles.buildInputTextStyle(state, controller.text),
-        textAlign: state.textAlign,
-        textDirection: state.isRTLDirection
-            ? TextDirection.rtl
-            : TextDirection.ltr,
-        decoration: decoration,
-        contextMenuBuilder: _buildContextMenu,
+    return TextField(
+      scrollPhysics: const NeverScrollableScrollPhysics(),
+      maxLines: null,
+      controller: controller,
+      focusNode: focusNode,
+      autofocus: true,
+      showCursor: true,
+      autocorrect: true,
+      textAlignVertical: TextAlignVertical.center,
+      cursorColor: context.palette.onSurface,
+      style: _EditorFieldStyles.buildInputTextStyle(
+        fontState,
+        styleState,
+        colorState,
+        formattingState,
+        controller.text,
       ),
+      textAlign: formattingState.textAlign,
+      textDirection: formattingState.isRTLDirection
+          ? TextDirection.rtl
+          : TextDirection.ltr,
+      decoration: decoration,
+      contextMenuBuilder: _buildContextMenu,
     );
   }
 

@@ -1,35 +1,39 @@
-part of 'editor_field.dart';
+part of 'text_field_stack.dart';
 
 /// A read-only text field used for background styling effects.
 class _StylingTextField extends StatelessWidget {
   const _StylingTextField({
     required this.style,
-    required this.state,
+    required this.fontState,
+    required this.styleState,
+    required this.colorState,
+    required this.formattingState,
     required this.controller,
-    required this.decoration,
+    this.decoration,
   });
 
   final TextStyle style;
-  final FontStoryState state;
-  final TextEditingController controller;
-  final InputDecoration decoration;
+  final FontSelectionState fontState;
+  final StyleSelectionState styleState;
+  final ColorSelectionState colorState;
+  final TextFormattingState formattingState;
+  final HighlightController controller;
+  final InputDecoration? decoration;
 
   @override
   Widget build(BuildContext context) {
-    return IntrinsicWidth(
-      child: TextField(
-        scrollPhysics: const NeverScrollableScrollPhysics(),
-        maxLines: null,
-        readOnly: true,
-        controller: controller,
-        textAlignVertical: TextAlignVertical.center,
-        style: style,
-        textAlign: state.textAlign,
-        textDirection: state.isRTLDirection
-            ? TextDirection.rtl
-            : TextDirection.ltr,
-        decoration: decoration,
-      ),
+    return TextField(
+      scrollPhysics: const NeverScrollableScrollPhysics(),
+      maxLines: null,
+      readOnly: true,
+      controller: controller,
+      textAlignVertical: TextAlignVertical.center,
+      style: style,
+      textAlign: formattingState.textAlign,
+      textDirection: formattingState.isRTLDirection
+          ? TextDirection.rtl
+          : TextDirection.ltr,
+      decoration: decoration,
     );
   }
 }

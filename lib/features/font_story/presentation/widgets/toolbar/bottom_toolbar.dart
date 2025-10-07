@@ -2,19 +2,22 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:font_story/config/values/index.dart' show AppDimensions;
 import 'package:font_story/core/extensions/index.dart' show SpacingExtension;
-import 'package:font_story/features/font_story/presentation/cubit/font_story_cubit.dart';
+import 'package:font_story/features/font_story/presentation/cubit/style_selection/style_selection_cubit.dart';
 
+import '../../cubit/highlight/highlight_cubit.dart';
 import 'bottom_toolbar_tab.dart';
 import 'color/color_list.dart';
 import 'font/font_list.dart';
 import 'style/style_list.dart';
 
 class BottomToolbar extends StatelessWidget {
-  const BottomToolbar({super.key});
+  const BottomToolbar({super.key, this.hasHighlight = false});
+
+  final bool hasHighlight;
 
   @override
   Widget build(BuildContext context) {
-    return BlocSelector<FontStoryCubit, FontStoryState, bool>(
+    return BlocSelector<StyleSelectionCubit, StyleSelectionState, bool>(
       selector: (state) => state.selectedStyle?.canChangeColor ?? false,
       builder: (context, isColorMutable) {
         return DefaultTabController(
@@ -30,27 +33,33 @@ class BottomToolbar extends StatelessWidget {
                   child: TabBarView(
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
-                      StyleList(),
-                      FontList(),
+                      const StyleList(),
+                      FontList(hasHighlight: hasHighlight),
                       ColorList(
                         pageStorageKey: 'color',
+                        hasHighlight: hasHighlight,
                         getSelectedValue: (state) => (
-                          state.colorSelectionType,
-                          state.selectedColor,
-                          state.selectedGradient,
+                          type: state.colorSelectionType,
+                          color: state.selectedColor,
+                          gradient: state.selectedGradient,
                         ),
-                        onColorChanged: (cubit, color) =>
-                            cubit.selectColor(color),
-                        onGradientChanged: (cubit, gradient) =>
-                            cubit.selectGradient(gradient),
+                        onColorChanged: (cubit, color) => hasHighlight
+                            ? context.read<HighlightCubit>().changeColor(color)
+                            : cubit.selectColor(color),
+                        onGradientChanged: (cubit, gradient) => hasHighlight
+                            ? context.read<HighlightCubit>().changeGradient(
+                                gradient,
+                              )
+                            : cubit.selectGradient(gradient),
                       ),
                       if (isColorMutable)
                         ColorList(
                           pageStorageKey: 'style-color',
+                          hasHighlight: hasHighlight,
                           getSelectedValue: (state) => (
-                            state.styleColorSelectionType,
-                            state.selectedStyleColor,
-                            state.selectedStyleGradient,
+                            type: state.styleColorSelectionType,
+                            color: state.selectedStyleColor,
+                            gradient: state.selectedStyleGradient,
                           ),
                           onColorChanged: (cubit, color) =>
                               cubit.selectStyleColor(color),
