@@ -21,7 +21,39 @@
     "copy": "کپی",
     "cut": "برش",
     "paste": "چسباندن",
-    "select_all": "انتخاب همه"
+    "select_all": "انتخاب همه",
+    "text_spacing": "فاصله متن",
+    "padding": "فاصله داخلی",
+    "padding_values": {
+      "all": "همه جهت ها",
+      "top": "بالا",
+      "bottom": "پایین",
+      "left": "چپ",
+      "right": "راست"
+    },
+    "radius": "گوشه",
+    "border_radius":  {
+      "all": "همه گوشه ها",
+      "top_left": "بالا چپ",
+      "top_right":  "بالا راست",
+      "bottom_left":  "پایین چپ",
+      "bottom_right":  "پایین راست"
+    },
+    "border": "حاشیه",
+    "border_width": {
+      "all": "کل حاشیه",
+      "top": "بالا",
+      "bottom": "پایین",
+      "left": "چپ",
+      "right": "راست"
+    },
+    "shadow": "سایه",
+    "shadow_values": {
+      "blur_radius": "میزان تاری",
+      "spread_radius": "میزان پخش",
+      "x_offset": "جابجایی افقی",
+      "y_offset": "جابجایی عمودی"
+    }
   },
   "messages": {
     "loading_ad": "در حال بارگذاری تبلیغ...",

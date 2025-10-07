@@ -21,7 +21,39 @@
     "copy": "Copy",
     "cut": "Cut",
     "paste": "Paste",
-    "select_all": "Select All"
+    "select_all": "Select All",
+    "text_spacing": "Text Spacing",
+    "padding": "Padding",
+    "padding_values": {
+      "all": "All",
+      "top": "Top",
+      "bottom": "Bottom",
+      "left": "Left",
+      "right": "Right"
+    },
+    "radius": "Border Radius",
+    "border_radius":  {
+      "all": "All Radius",
+      "top_left": "Top Left",
+      "top_right": "Top Right",
+      "bottom_left": "Bottom Left",
+      "bottom_right": "Bottom Right"
+    },
+    "border": "Border",
+    "border_width": {
+      "all": "All Border",
+      "top": "Top",
+      "bottom": "Bottom",
+      "left": "Left",
+      "right": "Right"
+    },
+    "shadow": "Shadow",
+    "shadow_values": {
+      "blur_radius": "Blur Radius",
+      "spread_radius": "Spread Radius",
+      "x_offset": "X Offset",
+      "y_offset": "Y Offset"
+    }
   },
   "messages": {
     "loading_ad": "Loading ad...",
