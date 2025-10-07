@@ -25,9 +25,10 @@
 
 | Platform       | Link                                                                 |
 |----------------|----------------------------------------------------------------------|
-| 📦 Google Play  | [Coming Soon](#) |
-| 🌐 Web         | [Coming Soon](#)                        |
+| 📦 Google Play  | [Google Play](https://play.google.com/store/apps/details?id=com.studio.moon.font_story&pcampaignid=web_share) |
 | 📁 APK         | [Download Latest APK](https://github.com/FontStory/font-story-app/releases/latest/download/app-release.apk) |
+| 🌐 Web         | [Coming Soon](#)                        |
+
 
 > No account. No ads. Just pure, creative fun — online or offline.
 
@@ -227,9 +228,10 @@ We're open to:
 
 ## 🤝 Developer Info
 
-| Maintainer | Instagram | Telegram | X / Twitter | Gmail |
-|------------|-----------|----------|-------------|-------|
-| [@ariaramin](https://github.com/ariaramin) | [📸 Instagram](https://instagram.com/aria._.ramin) | [✈️ Telegram](https://t.me/ariaramin7) | [🐦 X/Twitter](https://x.com/ariaramin7) | [📬 Gmail](mailto:ariaramin24@gmail.com) |
+| Maintainer | LinkedIn | Instagram | Telegram | X / Twitter | Gmail | 
+|-------------|------------|-----------|--------------|--------|-----------|
+| [@ariaramin](https://github.com/ariaramin) | [💼 LinkedIn](https://www.linkedin.com/in/ariaramin) | [📸 Instagram](https://instagram.com/aria._.ramin) | [✈️ Telegram](https://t.me/ariaramin7) | [🐦 X/Twitter](https://x.com/ariaramin7) | [📬 Gmail](mailto:ariaramin24@gmail.com) |
+
 
 
 ## 📄 License
